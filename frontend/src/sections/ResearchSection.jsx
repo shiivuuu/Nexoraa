@@ -50,15 +50,15 @@ const capabilities = [
     num: "04",
     domain: "COMPUTER VISION",
     icon: Activity,
-    title: "Edge Computer Vision & Crowd Safety Telemetry",
-    overview: "Deploying high-speed edge vision inference on low-power hardware, detecting motion anomalies, density gradients, and tracking objects without cloud latency.",
+    title: "Computer Vision & Visual Intelligence",
+    overview: "Research and implementation of visual perception architectures, image representation models, and real-time visual processing pipelines.",
     deliverables: [
-      "Real-time YOLOv8 density estimation regression head",
-      "Sub-120ms optical flow velocity vector field processing",
-      "Privacy-preserving edge silhouette filtering without facial storage",
-      "Automated siren dispatch and push notification hooks"
+      "Convolutional and visual transformer feature extraction",
+      "Low-latency frame analysis and spatial representation",
+      "Edge model optimization and hardware-accelerated inference",
+      "Cross-modal image and multimodal vector embeddings"
     ],
-    status: "AWARD WINNING // COMPETITION VALIDATED"
+    status: "RESEARCH // BENCHMARKING"
   },
   {
     num: "05",

@@ -21,9 +21,9 @@ const focusAreas = [
   },
   {
     num: '03',
-    title: 'Edge Computer Vision & Perception',
-    summary: 'Sub-120ms privacy-preserving edge inference, optical flow telemetry, and real-time spatial density monitoring.',
-    discipline: 'SPATIAL TELEMETRY',
+    title: 'Computer Vision & Visual Intelligence',
+    summary: 'Optimized visual transformer pipelines, multi-scale feature extractors, and low-latency image representation.',
+    discipline: 'VISUAL INTELLIGENCE',
     link: '/research'
   },
   {
@@ -68,7 +68,7 @@ const Hero = () => {
 
             {/* Controlled Text Width in DM Sans */}
             <p className="text-base sm:text-lg text-[#686B61] max-w-xl font-normal leading-relaxed">
-              Nexora is an independent technology collective focused on production systems, computer vision perception, and verifiable reasoning engines. Built from foundational principles without template bloat or artificial superficiality.
+              Nexora is an independent technology collective focused on production systems, distributed architecture, and verifiable reasoning engines. Built from foundational principles without template bloat or artificial superficiality.
             </p>
 
             {/* CTAs & Quick Metrics */}
@@ -98,7 +98,7 @@ const Hero = () => {
               </div>
               <div>
                 <span className="block text-mono text-[10px] text-[#A15E40] tracking-wider">PRIMARY DOMAINS</span>
-                <span className="font-medium text-[#252922] mt-0.5 block">AI, Systems &amp; Vision</span>
+                <span className="font-medium text-[#252922] mt-0.5 block">AI &amp; Distributed Systems</span>
               </div>
               <div className="hidden sm:block">
                 <span className="block text-mono text-[10px] text-[#A15E40] tracking-wider">LOCATION</span>

@@ -8,7 +8,7 @@ const defaultMember = {
   num: "01",
   name: "Shivam Upendra Yadav",
   role: "FOUNDER / LEAD ARCHITECT",
-  bio: "Core software engineer and full stack architect. Skilled in Java, C++, Python, JavaScript, and distributed engineering. Leading Nexora's AI research, edge vision systems, and autonomous project execution platforms.",
+  bio: "Core software engineer and full stack architect. Skilled in Java, C++, Python, JavaScript, and distributed engineering. Leading Nexora's AI research, distributed system architectures, and autonomous platform engineering.",
   skills: ["Full Stack Systems", "Core Java", "Python", "DSA & Algorithms", "System Architecture", "AI Automation"],
   github: "https://github.com/shiivuuu",
   linkedin: "https://linkedin.com/in/shivam-yadav",

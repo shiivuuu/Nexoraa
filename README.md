@@ -81,7 +81,6 @@ Inspired by minimalist editorial typography, negative space, and physical spring
 ## 🚀 Projects Catalog
 
 1. **NEXUS**: AI-Powered Team Collaboration & Autonomous Project Execution Platform
-2. **NETRAAI**: National Hackathon-Winning Edge Crowd-Safety Vision Perception Framework
 3. **MINDWEAVE**: Neuro-Symbolic Cognitive Intelligence Engine with Formal Theorem Proofs
 4. **BRIEFBOX**: High-Throughput Autonomous Document Extraction & Vector RAG Platform
 5. **XAPEXX**: Local-First Mesh Synchronization Protocol with CRDT Reconciliation

@@ -12,11 +12,11 @@ const papers = [
     author: "Nexora AI Research Group"
   },
   {
-    title: "Privacy-Preserving Edge Optical Flow for Density Prediction in Dense Public Gatherings",
+    title: "Low-Latency Visual Embeddings & Multi-Scale Feature Extraction in Edge Runtimes",
     domain: "COMPUTER VISION",
     date: "2026",
-    abstract: "Extracting motion vectors and turbulence coefficients from low-bitrate CCTV feeds without biometric facial storage, maintaining verified accuracy on edge GPUs.",
-    author: "Shivam Upendra Yadav, Nexora AI Lab"
+    abstract: "Evaluation of lightweight visual transformer backbones and optimized spatial feature extractors for high-throughput visual perception.",
+    author: "Nexora AI Research Group"
   },
   {
     title: "Local-First Ephemeral Key Agreement across Partitioned Mesh Topologies",

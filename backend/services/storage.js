@@ -569,7 +569,7 @@ const storage = {
 
     // Fallback synthesis
     return {
-      answer: "Nexoraa is an advanced technology collective pioneering Artificial Intelligence, Full-Stack Systems, Cybersecurity, Developer Tools, and Experimental Labs. Ask about our projects (NEXUS, NetraAI, MindWeave, BriefBox, XAPEXX), our research initiatives, or how to join our builder network.",
+      answer: "Nexoraa is an advanced technology collective pioneering Artificial Intelligence, Full-Stack Systems, Cybersecurity, Developer Tools, and Experimental Labs. Ask about our active project specifications, our research initiatives, or how to join our builder collective.",
       confidence: 0.5,
       category: "GENERAL",
       pageReference: "/",

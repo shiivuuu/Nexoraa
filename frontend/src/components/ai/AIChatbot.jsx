@@ -71,7 +71,7 @@ const AIChatbot = () => {
         ...prev,
         {
           sender: 'ai',
-          text: "Nexora is an independent technology collective and research lab founded by Shivam Upendra Yadav, dedicated to AI architectures, distributed systems, and edge computer vision.",
+          text: "Nexora is an independent technology collective and research lab founded by Shivam Upendra Yadav, dedicated to AI architectures, distributed systems, and verified software architectures.",
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         }
       ]);

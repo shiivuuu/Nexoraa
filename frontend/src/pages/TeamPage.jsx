@@ -13,8 +13,8 @@ const competencies = [
     items: ["Node.js", "Express.js", "REST APIs", "WebSockets", "MongoDB & Mongoose", "Distributed Architectures"]
   },
   {
-    category: "AI & PERCEPTION",
-    items: ["Computer Vision", "YOLOv8 Edge Models", "Retrieval-Augmented Generation (RAG)", "Vector Embeddings", "FastAPI"]
+    category: "AI & MACHINE LEARNING",
+    items: ["Deep Learning Architectures", "Retrieval-Augmented Generation (RAG)", "Vector Embeddings", "FastAPI"]
   },
   {
     category: "CORE DISCIPLINES",

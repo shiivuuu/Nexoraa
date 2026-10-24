@@ -16,7 +16,7 @@ const JoinPage = () => {
             Join the Collective
           </h1>
           <p className="text-base sm:text-lg text-[#686B61] max-w-2xl font-normal leading-relaxed">
-            Apply to engineer foundational artificial intelligence, distributed systems, and edge vision models alongside our core builders.
+            Apply to engineer foundational artificial intelligence, distributed systems, and modern platform architectures alongside our core builders.
           </p>
         </div>
 

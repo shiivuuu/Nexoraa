@@ -18,8 +18,8 @@ const collaborationTracks = [
   },
   {
     num: "03",
-    name: "Edge Vision & Spatial Analytics",
-    desc: "Work on real-time YOLOv8 density inference, optical flow telemetry, and privacy-preserving camera pipelines.",
+    name: "Computer Vision & Multimodal Systems",
+    desc: "Collaborate on image representation backbones, visual feature extractors, and multimodal embedding pipelines.",
     icon: Users
   },
   {

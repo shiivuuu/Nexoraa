@@ -60,7 +60,7 @@ const AboutPage = () => {
               In an era dominated by superficial software wrappers and low-effort generative clones, Nexora stands for disciplined systems engineering. We believe that true technological leverage comes from understanding memory layouts, networking sockets, deterministic constraint satisfaction, and high-performance concurrency.
             </p>
             <p>
-              From edge-based computer vision crowd safety systems deployed in national competitions to autonomous engineering command centers and local-first mesh runtimes, our systems operate at the bleeding edge of performance, security, and human-computer ergonomics.
+              From autonomous engineering command centers and local-first mesh runtimes to verifiable reasoning engines, our systems operate at the bleeding edge of performance, security, and human-computer ergonomics.
             </p>
           </div>
         </div>

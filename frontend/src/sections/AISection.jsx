@@ -43,7 +43,7 @@ const AISection = () => {
     } catch (err) {
       setResponse({
         question,
-        answer: "Nexora is an independent technology collective and research lab founded by Shivam Upendra Yadav, dedicated to AI architectures, distributed systems, and edge computer vision. We build verified software from first principles.",
+        answer: "Nexora is an independent technology collective and research lab founded by Shivam Upendra Yadav, dedicated to AI architectures, distributed systems, and verified software architectures. We build verified software from first principles.",
         category: 'COLLECTIVE',
         confidence: 0.9
       });

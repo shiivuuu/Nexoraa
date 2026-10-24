@@ -14,7 +14,7 @@ const seedData = {
       name: "Shivam Upendra Yadav",
       username: "shivam",
       role: "FOUNDER / LEAD ARCHITECT",
-      bio: "Core software engineer and full stack architect. Skilled in Java, C++, Python, JavaScript, and distributed engineering. Leading Nexoraa's AI research, NetraAI edge vision systems, and autonomous project execution platforms.",
+      bio: "Core software engineer and full stack architect. Skilled in Java, C++, Python, JavaScript, and distributed engineering. Leading Nexoraa's AI research, distributed systems, and autonomous project execution platforms.",
       photoUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
       githubUrl: "https://github.com/shivam-upendra",
       linkedinUrl: "https://linkedin.com/in/shivam-yadav",
@@ -55,10 +55,10 @@ const seedData = {
     {
       id: "res-4",
       number: "04",
-      title: "Edge Computer Vision & Spatial Perception",
+      title: "Computer Vision & Visual Intelligence",
       domain: "AUTOMATION & PERCEPTION",
-      summary: "Sub-100ms inference on embedded hardware, crowd density heatmapping, and privacy-preserving silhouette optical flow.",
-      keyAreas: ["YOLOv8 Edge Quantization", "Optical Flow Velocity", "Spatial Density Models", "Hardware TPU Acceleration"],
+      summary: "Visual perception architectures, multi-scale feature extractors, and low-latency image representation.",
+      keyAreas: ["Visual Transformers", "Feature Extraction", "Image Representation", "Hardware Acceleration"],
       status: "HACKATHON DEPLOYED"
     },
     {
@@ -72,16 +72,7 @@ const seedData = {
     }
   ],
   achievements: [
-    {
-      id: "ach-1",
-      year: "2026",
-      category: "HACKATHON",
-      title: "1st Place Winner — National Hackathon 2026",
-      event: "National Level Innovation Hackathon",
-      result: "Grand Champion / Gold Trophy",
-      description: "NetraAI won first place for real-time edge computer vision crowd safety, low-latency spatial perception, and privacy-first architecture.",
-      date: "2026-03"
-    },
+    
     {
       id: "ach-2",
       year: "2026",
@@ -178,7 +169,7 @@ const seedData = {
       role: "AI / ML",
       skills: "Python, PyTorch, HuggingFace, RAG pipelines, FastAPI",
       experience: "Final year CS student with 2 published papers on edge perception models.",
-      whyNexoraa: "I was deeply inspired by NetraAI's hackathon win and want to work on next-generation spatial intelligence.",
+      whyNexoraa: "I am excited by Nexora's systems engineering approach and want to contribute to high-performance distributed architectures.",
       status: "reviewed",
       createdAt: "2026-10-01T14:30:00Z"
     }
@@ -230,7 +221,7 @@ const seedData = {
     {
       id: "kb-2",
       question: "What projects have you built?",
-      answer: "Nexoraa has engineered 5 core breakthrough projects: 1) NEXUS — AI-powered collaborative engineering command center; 2) NETRAAI — National hackathon-winning edge crowd-safety vision perception framework; 3) MINDWEAVE — Hybrid neuro-symbolic reasoning engine; 4) BRIEFBOX — High-throughput document RAG intelligence; 5) XAPEXX — Local-first offline mesh synchronization runtime.",
+      answer: "Nexora engineers high-performance platforms, distributed systems, and verified software architectures. Explore our Work section for active project specifications.",
       category: "PROJECTS",
       keywords: ["projects", "what have you built", "work", "portfolio", "built", "apps", "systems"],
       priority: 10,
@@ -245,19 +236,11 @@ const seedData = {
       priority: 9,
       pageReference: "/projects/nexus"
     },
-    {
-      id: "kb-4",
-      question: "What is NETRAAI?",
-      answer: "NetraAI is Nexoraa's national hackathon-winning crowd-safety vision perception platform. It processes raw CCTV feeds on edge hardware using YOLO and optical flow to detect bottlenecks, density gradients, and stampede risks in under 120ms without storing individual faces or violating privacy.",
-      category: "PROJECTS",
-      keywords: ["netraai", "vision", "computer vision", "crowd", "safety", "hackathon"],
-      priority: 9,
-      pageReference: "/projects/netraai"
-    },
+    
     {
       id: "kb-5",
       question: "Who are the team members?",
-      answer: "Nexoraa is founded and led by Shivam Upendra Yadav (Founder & Lead Full Stack Architect), directing core artificial intelligence research, distributed system architectures, NetraAI edge vision systems, and autonomous project execution platforms.",
+      answer: "Nexoraa is founded and led by Shivam Upendra Yadav (Founder & Lead Full Stack Architect), directing core artificial intelligence research, distributed system architectures, distributed systems, and autonomous project execution platforms.",
       category: "TEAM",
       keywords: ["team", "who built", "founder", "shivam", "members", "people", "builders"],
       priority: 9,
@@ -305,8 +288,8 @@ const seedData = {
       id: "msg-1",
       name: "Vikramaditya Roy",
       email: "v.roy@techlabs.in",
-      subject: "Collaboration on NetraAI Edge Deployment",
-      message: "Hello Nexoraa team, we would love to explore piloting NetraAI at our upcoming regional university festival.",
+      subject: "Collaboration on Distributed Systems Architecture",
+      message: "Hello Nexora team, we would love to explore collaborating on your open-source systems architecture.",
       read: false,
       createdAt: "2026-10-02T11:20:00Z"
     }

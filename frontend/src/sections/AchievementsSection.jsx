@@ -8,15 +8,15 @@ const timeline = [
     category: "HACKATHON",
     event: "NATIONAL LEVEL INNOVATION HACKATHON",
     result: "1ST PLACE GRAND CHAMPION",
-    project: "NETRAAI CROWD SAFETY & SPATIAL PERCEPTION",
-    desc: "Engineered sub-120ms privacy-preserving edge crowd density heatmapping and velocity anomaly prediction deployed across live CCTV streams."
+    project: "DISTRIBUTED SYSTEMS RESEARCH",
+    desc: "Engineered high-throughput event processing and verified low-latency state synchronization."
   },
   {
     year: "2026",
     category: "ARCHITECTURE",
     event: "AI ENGINEERING SUMMIT 2026",
     result: "BEST TECHNICAL ARCHITECTURE AWARD",
-    project: "NEXUS AUTONOMOUS WORKSPACE",
+    project: "SYSTEM ARCHITECTURE ENGINE",
     desc: "Recognized for reactive multi-agent synchronization, automated GitHub PR synthesis, and zero-latency WebSocket state reconciliation."
   },
   {

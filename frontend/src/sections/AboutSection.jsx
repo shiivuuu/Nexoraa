@@ -48,7 +48,7 @@ const AboutSection = () => {
             </h2>
 
             <p className="text-base sm:text-lg text-[#686B61] leading-relaxed font-normal max-w-2xl">
-              Nexora is an independent technology collective focused on artificial intelligence, systems software, edge computer vision, and verified engineering tools.
+              Nexora is an independent technology collective focused on artificial intelligence, distributed systems software, and verified engineering tools.
             </p>
 
             <p className="text-sm sm:text-base text-[#686B61] leading-relaxed max-w-2xl">

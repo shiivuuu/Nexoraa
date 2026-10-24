@@ -53,7 +53,7 @@ const ProjectsPage = () => {
             Selected Projects &amp; Systems
           </h1>
           <p className="text-base sm:text-lg text-[#686B61] max-w-2xl font-normal leading-relaxed">
-            Autonomous engineering platforms, computer vision architectures, and distributed systems developed and maintained by the collective.
+            Autonomous engineering platforms, systems software, and distributed architectures developed and maintained by the collective.
           </p>
         </div>
 
