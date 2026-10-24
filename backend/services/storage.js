@@ -91,10 +91,10 @@ const storage = {
     if (getStatus()) {
       try {
         const list = await models.Project.find().sort({ priority: 1, createdAt: -1 });
-        if (list && list.length > 0) return list;
+        if (list) return list;
       } catch (e) { /* fallback */ }
     }
-    return [...localStore.projects].sort((a, b) => (a.priority || 0) - (b.priority || 0));
+    return [...(localStore?.projects || [])].sort((a, b) => (a.priority || 0) - (b.priority || 0));
   },
 
   async getProjectBySlug(slug) {

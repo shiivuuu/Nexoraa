@@ -3,24 +3,16 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('nexoraa_theme') || 'dark';
-  });
+  const [theme, setTheme] = useState('brand');
 
   useEffect(() => {
     const root = document.documentElement;
-    if (theme === 'light') {
-      root.classList.add('light');
-      root.classList.remove('dark');
-    } else {
-      root.classList.add('dark');
-      root.classList.remove('light');
-    }
-    localStorage.setItem('nexoraa_theme', theme);
-  }, [theme]);
+    root.classList.remove('dark');
+    root.classList.add('brand');
+  }, []);
 
   const toggleTheme = () => {
-    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+    // Preserves interface for any child callers
   };
 
   return (
@@ -30,4 +22,5 @@ export const ThemeProvider = ({ children }) => {
   );
 };
 
+export default ThemeContext;
 export const useTheme = () => useContext(ThemeContext);

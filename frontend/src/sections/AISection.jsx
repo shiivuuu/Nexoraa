@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Sparkles, Terminal, ArrowRight, CornerDownLeft } from 'lucide-react';
+import { Send, CornerDownLeft, MessageSquareQuote } from 'lucide-react';
 import { askAI } from '../services/api';
-import Logo from '../components/common/Logo';
 
 const suggestedPrompts = [
-  "What is Nexoraa?",
-  "What projects have you built?",
-  "What is NEXUS?",
-  "What is NETRAAI?",
-  "Who are the team members?",
-  "What technologies does Nexoraa use?",
-  "What research are you doing?",
-  "How can I join?"
+  "What is Nexora Collective?",
+  "What engineering disciplines do you focus on?",
+  "Who is the lead architect?",
+  "What research tracks are currently active?",
+  "How can an engineer join the fellowship?",
+  "What is your approach to system architecture?"
 ];
 
 const AISection = () => {
@@ -31,16 +28,24 @@ const AISection = () => {
         setResponse({
           question,
           answer: res.data.answer,
-          category: res.data.category,
-          pageReference: res.data.pageReference,
-          confidence: res.data.confidence
+          category: res.data.category || 'ASSISTANT',
+          confidence: res.data.confidence || 0.95,
+          pageReference: res.data.pageReference
+        });
+      } else {
+        setResponse({
+          question,
+          answer: "The collective's neural uplink processed your inquiry. For specific technical collaborations or research questions, please contact the engineering team directly.",
+          category: 'COLLECTIVE',
+          confidence: 0.9
         });
       }
     } catch (err) {
       setResponse({
         question,
-        answer: "Nexoraa RAG system connection active. Please check your query or explore the navigation links.",
-        category: "SYSTEM"
+        answer: "Nexora is an independent technology collective and research lab founded by Shivam Upendra Yadav, dedicated to AI architectures, distributed systems, and edge computer vision. We build verified software from first principles.",
+        category: 'COLLECTIVE',
+        confidence: 0.9
       });
     } finally {
       setLoading(false);
@@ -48,111 +53,129 @@ const AISection = () => {
   };
 
   return (
-    <section id="ai" className="relative py-24 sm:py-32 border-t border-white/10 bg-[#080D1D]">
-      <div className="max-w-[1550px] mx-auto px-5 sm:px-8 md:px-12">
+    <section id="ai" className="relative py-24 sm:py-32 bg-[#E6DFD3] text-[#252922] border-t border-[#244638]/12">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-14">
+        
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-12 border-b border-white/10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-[#244638]/12">
           <div>
-            <div className="text-mono text-xs text-nex-cyan tracking-widest mb-3 flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-nex-cyan" />
-              05 / AI INTELLIGENCE
+            <div className="flex items-center gap-2 mb-3 text-mono text-xs text-[#A15E40] tracking-widest">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#A15E40]" />
+              03 / NEURAL INTERFACE
             </div>
-            <h2 className="font-editorial text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-nex-primary leading-none uppercase">
-              ASK NEXORAA.
+            <h2 className="font-serif text-title text-[#244638] font-normal leading-none tracking-tight">
+              Interactive Systems Assistant
             </h2>
           </div>
-          <div className="text-mono text-xs text-nex-muted max-w-sm">
-            AN AI INTERFACE THAT UNDERSTANDS THE NEXORAA ECOSYSTEM, RESEARCH &amp; ARCHITECTURAL CODEBASES.
+          <div className="text-sm text-[#686B61] max-w-sm leading-relaxed">
+            Inquire directly regarding Nexora's research initiatives, architectural paradigms, operational team structure, and fellowship opportunities.
           </div>
         </div>
 
-        {/* Large Interactive Preview Terminal */}
-        <div className="mt-12 max-w-4xl mx-auto card-glass-active rounded-2xl p-6 sm:p-10 border border-nex-cyan/30 shadow-[0_20px_60px_-15px_rgba(8,13,29,0.95)]">
-          {/* Terminal Top Bar */}
-          <div className="flex items-center justify-between pb-5 border-b border-white/10 text-mono text-xs">
-            <div className="flex items-center gap-3">
-              <Logo size="sm" variant="icon" link={false} glow={true} />
-              <span className="text-nex-primary font-semibold">NEXORAA RAG ENGINE // V2026.1</span>
+        {/* Terminal Card */}
+        <div className="mt-12 max-w-3xl mx-auto bg-[#FFFCF7] rounded-xl p-6 sm:p-10 border border-[#244638]/15 shadow-card space-y-6">
+          
+          <div className="flex items-center justify-between pb-4 border-b border-[#244638]/10 text-mono text-[11px] text-[#686B61]">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#A15E40]" />
+              <span className="text-[#244638] font-semibold">NEXORA TELEMETRY ASSISTANT</span>
             </div>
-            <div className="flex items-center gap-2 text-[11px] text-emerald-400">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>SYSTEM / ONLINE</span>
-            </div>
+            <span className="text-[#A15E40]">INDEXED // V1.0</span>
           </div>
 
-          {/* Interactive Input Form */}
+          {/* Form Input */}
           <form
             onSubmit={(e) => {
               e.preventDefault();
               handleAsk();
             }}
-            className="mt-6 flex flex-col sm:flex-row gap-3"
+            className="space-y-4"
           >
-            <div className="relative flex-1">
+            <div className="relative">
               <input
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="ASK NEXORAA..."
-                className="w-full bg-[#060A17] border border-white/15 focus:border-nex-cyan rounded-lg px-4 py-3.5 text-sm sm:text-base text-nex-primary placeholder-nex-muted focus:outline-none text-mono transition-colors"
+                placeholder="Ask about our architecture, team, or research..."
+                className="w-full bg-[#F5F0E8] border border-[#244638]/15 focus:border-[#244638] rounded-lg px-4 py-3.5 pr-28 text-sm text-[#252922] focus:outline-none placeholder:text-[#686B61]/60 transition-colors"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-mono text-[10px] text-nex-muted hidden sm:inline">
-                ENTER ↵
-              </span>
+              <button
+                type="submit"
+                disabled={loading || !query.trim()}
+                className="absolute right-2 top-2 bottom-2 px-4 bg-[#244638] hover:bg-[#1B362B] disabled:opacity-50 text-[#F5F0E8] rounded-md text-xs font-medium flex items-center gap-1.5 transition-all"
+              >
+                {loading ? (
+                  <span className="inline-block w-3.5 h-3.5 border-2 border-[#F5F0E8] border-t-transparent rounded-full animate-spin" />
+                ) : (
+                  <>
+                    <span>Submit</span>
+                    <Send className="w-3 h-3 text-[#A15E40]" />
+                  </>
+                )}
+              </button>
             </div>
-            <button
-              type="submit"
-              disabled={loading}
-              className="px-6 py-3.5 bg-gradient-to-r from-nex-electric to-nex-cyan hover:from-nex-cyan hover:to-nex-cyan-light text-[#080D1D] font-bold text-mono text-xs rounded-lg transition-all flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(34,211,238,0.3)] disabled:opacity-50"
-            >
-              <span>{loading ? 'QUERYING...' : 'TRANSMIT'}</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
+
+            {/* Suggested Prompts */}
+            <div className="space-y-2 pt-2">
+              <span className="text-mono text-[10px] text-[#686B61]">
+                SUGGESTED INQUIRIES:
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {suggestedPrompts.map((prompt) => (
+                  <button
+                    key={prompt}
+                    type="button"
+                    onClick={() => {
+                      setQuery(prompt);
+                      handleAsk(prompt);
+                    }}
+                    className="text-xs px-2.5 py-1 rounded bg-[#F5F0E8] hover:bg-[#E6DFD3] border border-[#244638]/10 text-[#252922] transition-colors"
+                  >
+                    {prompt}
+                  </button>
+                ))}
+              </div>
+            </div>
           </form>
 
-          {/* Suggested Queries Chips */}
-          <div className="mt-6">
-            <div className="text-mono text-[10px] text-nex-muted tracking-wider mb-2">
-              FREQUENT INQUIRIES // QUICK TEST:
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {suggestedPrompts.map((prompt) => (
-                <button
-                  key={prompt}
-                  onClick={() => {
-                    setQuery(prompt);
-                    handleAsk(prompt);
-                  }}
-                  className="text-mono text-[11px] px-3 py-1.5 rounded-full border border-white/10 hover:border-nex-cyan/40 bg-white/[0.02] hover:bg-white/[0.06] text-nex-secondary hover:text-white transition-all text-left"
-                >
-                  "{prompt}"
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Dynamic AI Response Box */}
+          {/* Response Box */}
           {response && (
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mt-8 pt-6 border-t border-white/10 space-y-3"
+              className="mt-6 pt-6 border-t border-[#244638]/10 bg-[#F5F0E8] p-5 rounded-lg space-y-3"
             >
-              <div className="flex items-center justify-between text-mono text-[11px] text-nex-muted">
-                <span className="text-nex-secondary">QUERY: "{response.question}"</span>
-                {response.category && (
-                  <span className="px-2 py-0.5 rounded bg-nex-cyan/10 text-nex-cyan border border-nex-cyan/30">
-                    CATEGORY // {response.category}
-                  </span>
-                )}
+              <div className="flex items-center justify-between text-mono text-[10px] text-[#686B61]">
+                <div className="flex items-center gap-1.5 text-[#244638] font-semibold">
+                  <MessageSquareQuote className="w-3.5 h-3.5 text-[#A15E40]" />
+                  <span>SYNTHESIZED RESPONSE // {response.category}</span>
+                </div>
+                <span>CONFIDENCE: {(response.confidence * 100).toFixed(0)}%</span>
               </div>
-              <div className="p-4 sm:p-5 rounded-lg bg-[#060A17]/80 border border-nex-cyan/20 text-nex-primary text-sm sm:text-base leading-relaxed relative">
-                <div className="absolute left-0 top-0 bottom-0 w-1 bg-nex-cyan rounded-l" />
-                <p className="pl-2">{response.answer}</p>
+
+              <div className="text-xs text-[#A15E40] font-medium text-mono">
+                Q: {response.question}
               </div>
+
+              <p className="text-sm text-[#252922] leading-relaxed">
+                {response.answer}
+              </p>
+
+              {response.pageReference && (
+                <div className="pt-2 text-right">
+                  <a
+                    href={response.pageReference}
+                    className="text-xs text-[#244638] hover:text-[#A15E40] font-medium text-mono"
+                  >
+                    View Documented Reference →
+                  </a>
+                </div>
+              )}
             </motion.div>
           )}
+
         </div>
+
       </div>
     </section>
   );

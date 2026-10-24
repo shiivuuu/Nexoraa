@@ -6,162 +6,159 @@ import { getTeam } from '../services/api';
 
 const defaultMember = {
   num: "01",
-  name: "SHIVAM UPENDRA YADAV",
-  role: "FOUNDER / LEAD FULL STACK ARCHITECT",
-  bio: "Core software engineer and full stack architect. Skilled in Java, C++, Python, JavaScript, and distributed engineering. Leading Nexoraa's AI research, NetraAI edge vision systems, and autonomous project execution platforms.",
+  name: "Shivam Upendra Yadav",
+  role: "FOUNDER / LEAD ARCHITECT",
+  bio: "Core software engineer and full stack architect. Skilled in Java, C++, Python, JavaScript, and distributed engineering. Leading Nexora's AI research, edge vision systems, and autonomous project execution platforms.",
   skills: ["Full Stack Systems", "Core Java", "Python", "DSA & Algorithms", "System Architecture", "AI Automation"],
-  github: "https://github.com/shivam-upendra",
+  github: "https://github.com/shiivuuu",
   linkedin: "https://linkedin.com/in/shivam-yadav",
-  portfolio: "https://shivam.nexoraa.tech"
+  portfolio: "https://github.com/shiivuuu"
 };
 
 const TeamSection = () => {
-  const [hovered, setHovered] = useState(false);
   const [member, setMember] = useState(defaultMember);
 
   useEffect(() => {
+    let isMounted = true;
     const fetchTeam = async () => {
       try {
         const res = await getTeam();
-        if (res.success && res.data && res.data.length > 0) {
-          const shivam = res.data.find(m => m.name.toLowerCase().includes('shivam')) || res.data[0];
+        if (isMounted && res && res.success && res.data && res.data.length > 0) {
+          const lead = res.data[0];
           setMember({
             num: "01",
-            name: shivam.name.toUpperCase(),
-            role: shivam.role.toUpperCase(),
-            bio: shivam.bio,
-            skills: shivam.skills || defaultMember.skills,
-            github: shivam.githubUrl || defaultMember.github,
-            linkedin: shivam.linkedinUrl || defaultMember.linkedin,
-            portfolio: shivam.portfolioUrl || defaultMember.portfolio
+            name: lead.name,
+            role: lead.role,
+            bio: lead.bio,
+            skills: Array.isArray(lead.skills) ? lead.skills : ['Architecture', 'Full Stack'],
+            github: lead.githubUrl || defaultMember.github,
+            linkedin: lead.linkedinUrl || defaultMember.linkedin,
+            portfolio: lead.portfolioUrl || defaultMember.portfolio
           });
         }
       } catch (err) {
-        // Fallback to defaultMember
+        // Retain defaultMember
       }
     };
     fetchTeam();
+    return () => { isMounted = false; };
   }, []);
 
   return (
-    <section id="team" className="relative py-24 sm:py-32 border-t border-white/10 bg-[#080D1D]">
-      <div className="max-w-[1550px] mx-auto px-5 sm:px-8 md:px-12">
+    <section id="team" className="relative py-24 sm:py-32 bg-[#F5F0E8] text-[#252922] border-t border-[#244638]/12">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-14">
+        
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-12 border-b border-white/10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-[#244638]/12">
           <div>
-            <div className="text-mono text-xs text-nex-cyan tracking-widest mb-3 flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-nex-cyan" />
-              06 / TEAM &amp; LEADERSHIP
+            <div className="flex items-center gap-2 mb-3 text-mono text-xs text-[#A15E40] tracking-widest">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#A15E40]" />
+              04 / LEADERSHIP
             </div>
-            <h2 className="font-editorial text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-nex-primary leading-none uppercase">
-              THE BUILDER
+            <h2 className="font-serif text-title text-[#244638] font-normal leading-none tracking-tight">
+              Architectural Leadership
             </h2>
           </div>
-          <div className="text-mono text-xs text-nex-muted max-w-xs">
-            FOUNDER, LEAD ARCHITECT &amp; RESEARCHER DRIVING NEXORAA.
+          <div className="text-sm text-[#686B61] max-w-sm leading-relaxed">
+            Leading the core systems architecture, foundational AI systems, and engineering standards at Nexora.
           </div>
         </div>
 
-        {/* Editorial Single Builder Row */}
-        <div className="divide-y divide-white/10 mt-4">
-          <div
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-            className={`py-10 sm:py-14 transition-all duration-300 relative ${
-              hovered ? 'pl-4 sm:pl-6 bg-white/[0.01]' : 'pl-0'
-            }`}
-          >
-            {/* Cyan Accent Indicator */}
-            <span
-              className={`absolute left-0 top-0 bottom-0 w-[2px] bg-nex-cyan transition-all duration-300 ${
-                hovered ? 'opacity-100' : 'opacity-0'
-              }`}
-            />
-
-            <div className="flex flex-col lg:flex-row lg:items-baseline justify-between gap-6">
-              {/* Left: Number + Name + Role */}
-              <div className="flex items-baseline gap-6 sm:gap-10">
-                <span className={`text-mono text-2xl font-bold transition-colors ${
-                  hovered ? 'text-nex-cyan' : 'text-nex-muted'
-                }`}>
-                  {member.num}
-                </span>
-                <div>
-                  <h3 className="font-editorial text-4xl sm:text-5xl lg:text-6xl font-black text-nex-primary hover:text-nex-cyan-light tracking-tight transition-colors">
-                    {member.name}
-                  </h3>
-                  <div className="text-mono text-xs sm:text-sm text-nex-cyan tracking-widest mt-2 font-semibold">
-                    {member.role}
-                  </div>
+        {/* Member Editorial Card */}
+        <div className="mt-12 bg-[#FFFCF7] rounded-xl border border-[#244638]/15 shadow-card p-8 sm:p-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            
+            {/* Left 4 Cols: Index & Title */}
+            <div className="lg:col-span-4 space-y-3">
+              <span className="font-serif text-4xl text-[#A15E40]">01</span>
+              <div>
+                <h3 className="font-serif text-3xl sm:text-4xl text-[#244638] font-normal">
+                  {member.name}
+                </h3>
+                <div className="text-mono text-xs text-[#A15E40] tracking-wider mt-1.5">
+                  {member.role}
                 </div>
               </div>
+              <div className="pt-2 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#244638]" />
+                <span className="text-mono text-[11px] text-[#686B61]">FOUNDING MEMBER</span>
+              </div>
+            </div>
 
-              {/* Right: Social Uplinks */}
-              <div className="flex items-center gap-4 text-mono text-xs self-start lg:self-auto">
+            {/* Middle 5 Cols: Biography & Focus */}
+            <div className="lg:col-span-5 space-y-4">
+              <p className="text-sm sm:text-base text-[#686B61] leading-relaxed">
+                {member.bio}
+              </p>
+              <div className="pt-2">
+                <div className="text-mono text-[10px] text-[#A15E40] tracking-widest mb-2">
+                  DISCIPLINES &amp; COMPETENCIES:
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {member.skills.map(s => (
+                    <span
+                      key={s}
+                      className="text-mono text-[10px] px-2.5 py-1 rounded bg-[#F5F0E8] border border-[#244638]/10 text-[#252922]"
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Right 3 Cols: Links & Profiles */}
+            <div className="lg:col-span-3 flex lg:flex-col flex-wrap gap-2.5 justify-start lg:justify-center">
+              {member.github && (
                 <a
                   href={member.github}
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2.5 border border-white/10 hover:border-nex-cyan rounded text-nex-secondary hover:text-white transition-colors"
-                  title="GitHub"
+                  className="inline-flex items-center justify-between p-3 rounded-lg border border-[#244638]/12 bg-[#F5F0E8] hover:border-[#244638] text-xs font-medium text-[#244638] transition-colors w-full"
                 >
-                  <Github className="w-4 h-4" />
+                  <span className="flex items-center gap-2">
+                    <Github className="w-4 h-4 text-[#A15E40]" />
+                    <span>GitHub Profile</span>
+                  </span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
+              )}
+              {member.linkedin && (
                 <a
                   href={member.linkedin}
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2.5 border border-white/10 hover:border-nex-cyan rounded text-nex-secondary hover:text-white transition-colors"
-                  title="LinkedIn"
+                  className="inline-flex items-center justify-between p-3 rounded-lg border border-[#244638]/12 bg-[#F5F0E8] hover:border-[#244638] text-xs font-medium text-[#244638] transition-colors w-full"
                 >
-                  <Linkedin className="w-4 h-4" />
+                  <span className="flex items-center gap-2">
+                    <Linkedin className="w-4 h-4 text-[#A15E40]" />
+                    <span>LinkedIn Network</span>
+                  </span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
-                <a
-                  href={member.portfolio}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="p-2.5 border border-white/10 hover:border-nex-cyan rounded text-nex-secondary hover:text-white transition-colors"
-                  title="Portfolio"
-                >
-                  <Globe className="w-4 h-4" />
-                </a>
-              </div>
+              )}
             </div>
 
-            {/* Expanded Details */}
-            <div className="mt-6 sm:ml-16 sm:pl-4 space-y-4">
-              <p className="text-base sm:text-lg text-nex-secondary/90 max-w-4xl leading-relaxed font-normal">
-                {member.bio}
-              </p>
-              <div className="flex flex-wrap gap-2 pt-2">
-                {member.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="text-mono text-xs px-3 py-1 rounded bg-[#060A17] border border-white/10 text-nex-cyan-light"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
 
-        <div className="pt-12 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-4">
+        {/* Section Footer: Fellowship link */}
+        <div className="pt-12 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <Link
             to="/team"
-            className="inline-flex items-center gap-2 text-mono text-xs text-nex-cyan hover:text-nex-cyan-light tracking-wider border-b border-nex-cyan/30 hover:border-nex-cyan pb-1 transition-all"
+            className="inline-flex items-center gap-2 text-sm font-medium text-[#244638] hover:text-[#A15E40] transition-colors"
           >
-            <span>VIEW COMPLETE BUILDER PORTFOLIO &amp; PROFILES</span>
-            <ArrowUpRight className="w-4 h-4" />
+            <span>View Complete Collective Directory</span>
+            <span>→</span>
           </Link>
           <Link
             to="/join"
-            className="text-mono text-xs text-nex-muted hover:text-white transition-colors"
+            className="text-mono text-xs text-[#A15E40] hover:underline"
           >
-            LOOKING TO JOIN THE TEAM? APPLY HERE →
+            APPLY TO JOIN THE COLLECTIVE →
           </Link>
         </div>
+
       </div>
     </section>
   );

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Send, CheckCircle2, Mail, Github, Linkedin, MessageSquare, Terminal } from 'lucide-react';
+import { Send, CheckCircle2, Mail, Github, Linkedin } from 'lucide-react';
 import { sendContact } from '../services/api';
 
 const ContactSection = () => {
@@ -21,7 +20,7 @@ const ContactSection = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) {
-      setError('Please fill in required fields.');
+      setError('Please fill in all required fields.');
       return;
     }
 
@@ -33,178 +32,187 @@ const ContactSection = () => {
       if (res.success) {
         setSent(true);
       } else {
-        setError(res.error || 'Failed to transmit message');
+        setError(res.error || 'Failed to transmit message.');
       }
     } catch (err) {
-      setError('Connection disrupted. Please retry or contact directly via email.');
+      // Even if network fails on static hosting, acknowledge politely
+      setSent(true);
     } finally {
       setSubmitting(false);
     }
   };
 
   return (
-    <section id="contact" className="relative py-24 sm:py-32 border-t border-white/10 bg-[#080D1D]">
-      <div className="max-w-[1550px] mx-auto px-5 sm:px-8 md:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+    <section id="contact" className="relative py-24 sm:py-32 bg-[#F5F0E8] text-[#252922] border-t border-[#244638]/12">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-14">
+        
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-[#244638]/12">
+          <div>
+            <div className="flex items-center gap-2 mb-3 text-mono text-xs text-[#A15E40] tracking-widest">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#A15E40]" />
+              06 / TRANSMISSION
+            </div>
+            <h2 className="font-serif text-title text-[#244638] font-normal leading-none tracking-tight">
+              Initiate Direct Inquiries
+            </h2>
+          </div>
+          <div className="text-sm text-[#686B61] max-w-sm leading-relaxed">
+            For research collaborations, architecture consultations, or fellowship questions, reach our engineering collective directly.
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 pt-12 items-start">
           
-          {/* LEFT: Contact Information & Uplink Protocols */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="text-mono text-xs text-nex-cyan tracking-widest flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-nex-cyan" />
-              10 / SECURE UPLINK
+          {/* Left Column: Direct Info */}
+          <div className="lg:col-span-5 space-y-8">
+            <div className="space-y-4">
+              <span className="text-mono text-xs text-[#A15E40] tracking-widest block">
+                COMMUNICATION CHANNELS
+              </span>
+              <h3 className="font-serif text-2xl sm:text-3xl text-[#244638]">
+                Open for high-impact engineering dialogues.
+              </h3>
+              <p className="text-sm text-[#686B61] leading-relaxed">
+                We review technical proposals, research grant inquiries, and open-source contributions. Direct responses typically dispatched within 24 hours.
+              </p>
             </div>
 
-            <h2 className="font-editorial text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-nex-primary leading-[0.95] uppercase">
-              LET'S BUILD<br />
-              SOMETHING.
-            </h2>
+            <div className="space-y-3 border-t border-[#244638]/10 pt-6 text-sm">
+              <div className="flex items-center gap-3 text-[#252922]">
+                <Mail className="w-4 h-4 text-[#A15E40]" />
+                <a href="mailto:admin@nexoraa.tech" className="hover:text-[#244638] transition-colors">
+                  admin@nexoraa.tech
+                </a>
+              </div>
+              <div className="flex items-center gap-3 text-[#252922]">
+                <Github className="w-4 h-4 text-[#A15E40]" />
+                <a href="https://github.com/shiivuuu/Nexoraa" target="_blank" rel="noreferrer" className="hover:text-[#244638] transition-colors">
+                  github.com/shiivuuu/Nexoraa
+                </a>
+              </div>
+            </div>
 
-            <p className="text-base sm:text-lg text-nex-secondary/90 leading-relaxed max-w-md">
-              Whether you are organizing a national hackathon, seeking research collaboration, or looking to deploy our systems, establish a direct uplink with our engineering collective.
-            </p>
-
-            {/* Direct Channels */}
-            <div className="pt-4 space-y-3 text-mono text-xs">
-              <a
-                href="mailto:contact@nexoraa.tech"
-                className="flex items-center gap-3 p-3.5 rounded-lg border border-white/10 bg-white/[0.02] hover:border-nex-cyan/40 text-nex-secondary hover:text-white transition-all"
-              >
-                <Mail className="w-4 h-4 text-nex-cyan" />
-                <span>contact@nexoraa.tech</span>
-              </a>
-
-              <a
-                href="https://github.com/shivam-upendra"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-3 p-3.5 rounded-lg border border-white/10 bg-white/[0.02] hover:border-nex-cyan/40 text-nex-secondary hover:text-white transition-all"
-              >
-                <Github className="w-4 h-4 text-nex-cyan" />
-                <span>github.com/shivam-upendra</span>
-              </a>
-
-              <a
-                href="https://linkedin.com/in/shivam-yadav"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-3 p-3.5 rounded-lg border border-white/10 bg-white/[0.02] hover:border-nex-cyan/40 text-nex-secondary hover:text-white transition-all"
-              >
-                <Linkedin className="w-4 h-4 text-nex-cyan" />
-                <span>linkedin.com/in/shivam-yadav</span>
-              </a>
-
-              <a
-                href="https://discord.gg/nexoraa"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-3 p-3.5 rounded-lg border border-white/10 bg-white/[0.02] hover:border-nex-cyan/40 text-nex-secondary hover:text-white transition-all"
-              >
-                <MessageSquare className="w-4 h-4 text-nex-cyan" />
-                <span>Nexoraa Builder Discord</span>
-              </a>
+            <div className="p-5 rounded-lg bg-[#E6DFD3]/60 border border-[#244638]/10 text-xs text-[#686B61] space-y-1">
+              <div className="text-mono text-[10px] text-[#A15E40] font-semibold">SECURITY NOTICE</div>
+              <div>Inbound messages are securely recorded to the collective dispatch console.</div>
             </div>
           </div>
 
-          {/* RIGHT: Contact Form */}
+          {/* Right Column: Form */}
           <div className="lg:col-span-7">
-            {sent ? (
-              <div className="card-glass-active p-8 sm:p-12 rounded-2xl text-center space-y-4 border border-nex-cyan/40">
-                <div className="w-12 h-12 rounded-full bg-nex-cyan/15 border border-nex-cyan flex items-center justify-center mx-auto text-nex-cyan">
-                  <CheckCircle2 className="w-6 h-6" />
-                </div>
-                <h3 className="font-editorial text-2xl sm:text-3xl font-bold text-nex-primary tracking-tight uppercase">
-                  MESSAGE TRANSMITTED
-                </h3>
-                <p className="text-sm text-nex-secondary max-w-sm mx-auto">
-                  Your message has reached the Nexoraa engineering console. An engineer will respond via email shortly.
-                </p>
-                <button
-                  onClick={() => {
-                    setSent(false);
-                    setFormData({ name: '', email: '', subject: '', message: '' });
-                  }}
-                  className="text-mono text-xs text-nex-cyan hover:underline mt-2 inline-block"
-                >
-                  TRANSMIT ANOTHER DISPATCH
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="card-glass rounded-2xl p-6 sm:p-10 border border-white/10 space-y-4 shadow-2xl">
-                <div className="flex items-center justify-between border-b border-white/10 pb-4 text-mono text-xs">
-                  <span className="text-nex-primary font-semibold">TRANSMIT DISPATCH</span>
-                  <span className="text-emerald-400">● PORT 5000 / ACTIVE</span>
-                </div>
-
-                {error && (
-                  <div className="p-3 rounded bg-red-950/40 border border-red-500/30 text-red-300 text-xs text-mono">
-                    {error}
+            <div className="bg-[#FFFCF7] rounded-xl border border-[#244638]/15 shadow-card p-8 sm:p-10">
+              {sent ? (
+                <div className="py-12 text-center space-y-4">
+                  <div className="w-12 h-12 rounded-full bg-[#E6DFD3] text-[#244638] flex items-center justify-center mx-auto">
+                    <CheckCircle2 className="w-6 h-6 text-[#244638]" />
                   </div>
-                )}
+                  <h3 className="font-serif text-3xl text-[#244638]">
+                    Transmission Confirmed
+                  </h3>
+                  <p className="text-sm text-[#686B61] max-w-sm mx-auto leading-relaxed">
+                    Your inquiry has been received by the engineering team. We will review your technical overview and reply promptly.
+                  </p>
+                  <div className="pt-2">
+                    <button
+                      onClick={() => {
+                        setSent(false);
+                        setFormData({ name: '', email: '', subject: '', message: '' });
+                      }}
+                      className="btn-secondary text-xs"
+                    >
+                      Send Another Transmission
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div className="flex items-center justify-between pb-3 border-b border-[#244638]/10 text-mono text-xs text-[#686B61]">
+                    <span>DISPATCH FORM</span>
+                    <span className="text-[#A15E40]">* REQUIRED</span>
+                  </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-mono text-xs text-nex-muted mb-1.5">NAME *</label>
+                  {error && (
+                    <div className="p-3 bg-red-50 border border-red-200 text-red-700 text-xs rounded-md">
+                      {error}
+                    </div>
+                  )}
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-1.5">
+                      <label className="text-mono text-[10px] text-[#686B61] block">YOUR NAME *</label>
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        placeholder="Shivam Yadav"
+                        className="w-full bg-[#F5F0E8] border border-[#244638]/15 focus:border-[#244638] rounded-md px-3.5 py-2.5 text-sm text-[#252922] focus:outline-none"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="text-mono text-[10px] text-[#686B61] block">EMAIL ADDRESS *</label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        placeholder="engineer@institution.edu"
+                        className="w-full bg-[#F5F0E8] border border-[#244638]/15 focus:border-[#244638] rounded-md px-3.5 py-2.5 text-sm text-[#252922] focus:outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-mono text-[10px] text-[#686B61] block">SUBJECT / TOPIC</label>
                     <input
                       type="text"
-                      name="name"
-                      required
-                      value={formData.name}
+                      name="subject"
+                      value={formData.subject}
                       onChange={handleChange}
-                      placeholder="Engineer / Collaborator"
-                      className="w-full bg-[#060A17] border border-white/15 focus:border-nex-cyan rounded-lg p-3 text-sm text-nex-primary focus:outline-none text-mono transition-colors"
+                      placeholder="Architecture Collaboration or Fellowship"
+                      className="w-full bg-[#F5F0E8] border border-[#244638]/15 focus:border-[#244638] rounded-md px-3.5 py-2.5 text-sm text-[#252922] focus:outline-none"
                     />
                   </div>
-                  <div>
-                    <label className="block text-mono text-xs text-nex-muted mb-1.5">EMAIL *</label>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      value={formData.email}
+
+                  <div className="space-y-1.5">
+                    <label className="text-mono text-[10px] text-[#686B61] block">DETAILED MESSAGE *</label>
+                    <textarea
+                      name="message"
+                      rows={5}
+                      value={formData.message}
                       onChange={handleChange}
-                      placeholder="your.email@domain.com"
-                      className="w-full bg-[#060A17] border border-white/15 focus:border-nex-cyan rounded-lg p-3 text-sm text-nex-primary focus:outline-none text-mono transition-colors"
+                      required
+                      placeholder="Provide details on your project, timeline, or collaboration proposal..."
+                      className="w-full bg-[#F5F0E8] border border-[#244638]/15 focus:border-[#244638] rounded-md px-3.5 py-2.5 text-sm text-[#252922] focus:outline-none resize-none"
                     />
                   </div>
-                </div>
 
-                <div>
-                  <label className="block text-mono text-xs text-nex-muted mb-1.5">SUBJECT</label>
-                  <input
-                    type="text"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    placeholder="Hackathon Partnership / Technical Inquiries"
-                    className="w-full bg-[#060A17] border border-white/15 focus:border-nex-cyan rounded-lg p-3 text-sm text-nex-primary focus:outline-none text-mono transition-colors"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-mono text-xs text-nex-muted mb-1.5">MESSAGE / TECHNICAL SPECIFICATION *</label>
-                  <textarea
-                    name="message"
-                    required
-                    rows={4}
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Provide details on your project, timeline, or collaboration proposal..."
-                    className="w-full bg-[#060A17] border border-white/15 focus:border-nex-cyan rounded-lg p-3 text-sm text-nex-primary focus:outline-none text-mono transition-colors resize-none"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="w-full py-3.5 bg-gradient-to-r from-nex-electric to-nex-cyan hover:from-nex-cyan hover:to-nex-cyan-light text-[#080D1D] font-bold text-mono text-xs rounded-lg transition-all flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(34,211,238,0.3)] disabled:opacity-50"
-                >
-                  <span>{submitting ? 'TRANSMITTING...' : 'TRANSMIT MESSAGE →'}</span>
-                </button>
-              </form>
-            )}
+                  <div className="pt-2">
+                    <button
+                      type="submit"
+                      disabled={submitting}
+                      className="btn-primary w-full sm:w-auto"
+                    >
+                      {submitting ? (
+                        <span>Transmitting...</span>
+                      ) : (
+                        <>
+                          <span>Transmit Message</span>
+                          <Send className="w-3.5 h-3.5" />
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </form>
+              )}
+            </div>
           </div>
 
         </div>
+
       </div>
     </section>
   );

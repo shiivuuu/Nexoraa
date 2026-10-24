@@ -1,82 +1,90 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const stats = [
-  { value: "05+", label: "CORE DOMAINS", desc: "AI, Full-Stack, Security, DevTools, Labs" },
-  { value: "10+", label: "PROJECTS", desc: "Production platforms & competition winners" },
-  { value: "01", label: "FOUNDER & ARCHITECT", desc: "Shivam Upendra Yadav (Full Stack & AI)" },
-  { value: "∞", label: "IDEAS", desc: "Continuous experimentation & hackathons" }
+const principles = [
+  {
+    num: "01",
+    label: "FOUNDATIONAL ENGINEERING",
+    desc: "We prioritize algorithmic precision, type safety, and low-latency system design over superficial wrappers."
+  },
+  {
+    num: "02",
+    label: "VERIFIABLE INTELLIGENCE",
+    desc: "Combining machine learning representations with formal deterministic constraints to eliminate hallucinations."
+  },
+  {
+    num: "03",
+    label: "ARCHITECTURAL INTEGRITY",
+    desc: "Designing resilient distributed systems that remain functional and reliable under disconnected conditions."
+  },
+  {
+    num: "04",
+    label: "OPEN INQUIRY",
+    desc: "Continuous experimentation, public peer-review, and knowledge dissemination across top research tracks."
+  }
 ];
 
 const AboutSection = () => {
   return (
-    <section id="about" className="relative py-24 sm:py-32 border-t border-white/10 bg-[#080D1D]">
-      <div className="max-w-[1550px] mx-auto px-5 sm:px-8 md:px-12">
+    <section id="about" className="relative py-24 sm:py-32 bg-[#F5F0E8] text-[#252922] border-t border-[#244638]/12">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-14">
+        
         {/* Asymmetric Editorial Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           <div className="lg:col-span-4">
-            <div className="text-mono text-xs text-nex-cyan tracking-widest mb-3 flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-nex-cyan" />
-              02 / ABOUT NEXORAA
+            <div className="flex items-center gap-2 mb-3 text-mono text-xs text-[#A15E40] tracking-widest">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#A15E40]" />
+              00 / MANIFESTO
             </div>
-            <div className="text-mono text-xs text-nex-muted tracking-wider">
-              PHILOSOPHY &amp; ARCHITECTURE
+            <div className="font-serif text-2xl text-[#244638]">
+              Philosophy &amp; Standards
             </div>
           </div>
 
           <div className="lg:col-span-8 space-y-6">
-            <h2 className="font-editorial text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-nex-primary leading-[1.02] uppercase">
-              WE BUILD<br />
-              SYSTEMS THAT<br />
-              SOLVE REAL<br />
-              PROBLEMS.
+            <h2 className="font-serif text-title text-[#244638] font-normal leading-[1.08] tracking-tight">
+              We build systems that solve tangible engineering problems.
             </h2>
 
-            <p className="text-lg sm:text-xl text-nex-secondary/90 leading-relaxed font-normal max-w-3xl pt-2">
-              Nexoraa is a technology collective focused on artificial intelligence, software engineering, cybersecurity, experimentation, and community-driven innovation.
+            <p className="text-base sm:text-lg text-[#686B61] leading-relaxed font-normal max-w-2xl">
+              Nexora is an independent technology collective focused on artificial intelligence, systems software, edge computer vision, and verified engineering tools.
             </p>
 
-            <p className="text-sm sm:text-base text-nex-muted leading-relaxed max-w-3xl">
-              We reject bloated software, generic templates, and superficial AI wrappers. Every project we engineer is built from foundational principles—blending low-latency distributed systems, rigorous cryptographic guarantees, and verified machine learning models into tools that empower developers, hackathons, and high-velocity teams.
+            <p className="text-sm sm:text-base text-[#686B61] leading-relaxed max-w-2xl">
+              We reject bloated software, generic templates, and superficial AI wrappers. Every project we engineer is built from foundational principles—blending low-latency distributed systems, rigorous cryptographic guarantees, and verified models into tools that empower developers, hackathons, and high-velocity teams.
             </p>
 
-            <div className="pt-4">
+            <div className="pt-2">
               <Link
                 to="/about"
-                className="inline-flex items-center gap-2 text-mono text-xs text-nex-cyan hover:text-nex-cyan-light tracking-wider border-b border-nex-cyan/30 hover:border-nex-cyan pb-1 transition-all"
+                className="inline-flex items-center gap-1.5 text-xs text-[#244638] font-semibold hover:text-[#A15E40] text-mono tracking-wider transition-colors"
               >
-                <span>EXPLORE OUR COLLECTIVE ARCHITECTURE</span>
+                <span>EXPLORE COLLECTIVE ARCHITECTURE</span>
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
         </div>
 
-        {/* Minimal Editorial Statistics */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mt-20 sm:mt-24 pt-12 border-t border-white/10">
-          {stats.map((item, idx) => (
-            <motion.div
-              key={item.label}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="space-y-2 select-none"
+        {/* 4 Core Principles Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16 pt-12 border-t border-[#244638]/12">
+          {principles.map((item) => (
+            <div
+              key={item.num}
+              className="bg-[#FFFCF7] p-6 rounded-xl border border-[#244638]/12 shadow-card space-y-3"
             >
-              <div className="font-editorial text-4xl sm:text-5xl md:text-6xl font-extrabold text-nex-primary tracking-tight">
-                {item.value}
-              </div>
-              <div className="text-mono text-xs text-nex-cyan font-semibold tracking-wider">
+              <span className="font-serif text-2xl text-[#A15E40]">{item.num}</span>
+              <div className="text-mono text-xs text-[#244638] font-semibold tracking-wider">
                 {item.label}
               </div>
-              <div className="text-xs text-nex-muted leading-relaxed">
+              <p className="text-xs text-[#686B61] leading-relaxed">
                 {item.desc}
-              </div>
-            </motion.div>
+              </p>
+            </div>
           ))}
         </div>
+
       </div>
     </section>
   );

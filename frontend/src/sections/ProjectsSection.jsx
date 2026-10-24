@@ -1,231 +1,271 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Github, ExternalLink } from 'lucide-react';
+import { ArrowUpRight, Github, ExternalLink, FolderGit2, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
-const projectsData = [
-  {
-    number: "01",
-    slug: "nexus",
-    name: "NEXUS",
-    domain: "AI / INTELLIGENCE & WORKSPACE",
-    shortDescription: "AI-Powered Team Collaboration & Autonomous Project Execution Platform engineered for high-velocity engineering collectives.",
-    technology: "REACT / NODE / SOCKET.IO / RAG",
-    status: "LIVE PROTOTYPE",
-    previewImage: "/assets/projects/nexus.png",
-    githubUrl: "https://github.com/shivam-upendra/nexus-ai-workspace"
-  },
-  {
-    number: "02",
-    slug: "netraai",
-    name: "NETRAAI",
-    domain: "COMPUTER VISION / CROWD SAFETY",
-    shortDescription: "AI-assisted crowd-safety and real-time visual perception framework engineered for high-density public venues and national hackathons.",
-    technology: "PYTHON / PYTORCH / OPENCV / FASTAPI",
-    status: "HACKATHON WINNER",
-    previewImage: "/assets/projects/netraai.png",
-    githubUrl: "https://github.com/shivam-upendra/netraai-vision-defense"
-  },
-  {
-    number: "03",
-    slug: "mindweave",
-    name: "MINDWEAVE",
-    domain: "AI / SYMBOLIC & NEURAL REASONING",
-    shortDescription: "Hybrid neuro-symbolic cognitive intelligence engine for verifiable algorithmic reasoning and complex logical deduction.",
-    technology: "PYTORCH / Z3 PROVER / NEO4J / REACT",
-    status: "RESEARCH PREVIEW",
-    previewImage: "/assets/projects/mindweave.png",
-    githubUrl: "https://github.com/shivam-upendra/mindweave-neurosymbolic"
-  },
-  {
-    number: "04",
-    slug: "briefbox",
-    name: "BRIEFBOX",
-    domain: "KNOWLEDGE / DOCUMENT INTELLIGENCE",
-    shortDescription: "High-throughput autonomous document extraction, semantic RAG vectorization, and multi-document intelligence engine.",
-    technology: "REACT / NODE / PYTHON / QDRANT",
-    status: "PRODUCTION READY",
-    previewImage: "/assets/projects/briefbox.png",
-    githubUrl: "https://github.com/shivam-upendra/briefbox-document-rag"
-  },
-  {
-    number: "05",
-    slug: "xapexx",
-    name: "XAPEXX",
-    domain: "OFFLINE / DISTRIBUTED MESH SYSTEMS",
-    shortDescription: "Resilient peer-to-peer offline synchronization protocol and local-first data runtime for disconnected computing environments.",
-    technology: "RUST / WEBASSEMBLY / CRDT / WEBGPU",
-    status: "LAB EXPERIMENT",
-    previewImage: "/assets/projects/xapexx.png",
-    githubUrl: "https://github.com/shivam-upendra/xapexx-mesh-sync"
-  }
-];
+import { getProjects } from '../services/api';
 
 const ProjectsSection = () => {
-  const [hoveredProject, setHoveredProject] = useState(projectsData[0]);
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [hoveredIndex, setHoveredIndex] = useState(0);
+
+  useEffect(() => {
+    let isMounted = true;
+    const fetchProjectsData = async () => {
+      try {
+        const res = await getProjects();
+        if (isMounted && res && res.data) {
+          setProjects(res.data);
+        }
+      } catch (err) {
+        if (isMounted) setProjects([]);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    };
+
+    fetchProjectsData();
+    return () => { isMounted = false; };
+  }, []);
+
+  const activeProject = projects[hoveredIndex] || projects[0];
 
   return (
-    <section id="projects" className="relative py-24 sm:py-32 border-t border-white/10 bg-[#080D1D]">
-      <div className="max-w-[1550px] mx-auto px-5 sm:px-8 md:px-12">
+    <section id="projects" className="relative py-24 sm:py-32 bg-[#F5F0E8] text-[#252922] border-t border-[#244638]/12">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-14">
+        
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-12 border-b border-white/10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-[#244638]/12">
           <div>
-            <div className="text-mono text-xs text-nex-cyan tracking-widest mb-3 flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-nex-cyan" />
-              04 / WORK
+            <div className="flex items-center gap-2 mb-3 text-mono text-xs text-[#A15E40] tracking-widest">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#A15E40]" />
+              01 / SELECTED WORK
             </div>
-            <h2 className="font-editorial text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-nex-primary leading-none uppercase">
-              SELECTED<br />PROJECTS
+            <h2 className="font-serif text-title text-[#244638] font-normal leading-none tracking-tight">
+              Case Studies &amp; Architectures
             </h2>
           </div>
-          <div className="text-mono text-xs text-nex-muted max-w-xs">
-            ORIGINAL PRODUCTION PLATFORMS, COMPETITION PROTOTYPES &amp; RESEARCH REPOSITORIES.
+          <div className="text-sm text-[#686B61] max-w-sm leading-relaxed">
+            Systems designed and deployed by the collective. Each case study documents verified benchmarks, production stacks, and architectural decisions.
           </div>
         </div>
 
-        {/* Editorial Project List + Interactive Floating Graphic Preview */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pt-8 items-start">
-          
-          {/* LEFT: Editorial Rows */}
-          <div className="lg:col-span-8 divide-y divide-white/10">
-            {projectsData.map((project) => {
-              const isHovered = hoveredProject?.slug === project.slug;
+        {/* Loading State */}
+        {loading && (
+          <div className="py-24 text-center space-y-3">
+            <div className="inline-block w-6 h-6 border-2 border-[#244638] border-t-transparent rounded-full animate-spin" />
+            <p className="text-mono text-xs text-[#686B61] tracking-wider">RETRIEVING PRODUCTION SPECIFICATIONS...</p>
+          </div>
+        )}
 
-              return (
-                <div
-                  key={project.slug}
-                  onMouseEnter={() => setHoveredProject(project)}
-                  className={`group relative py-7 sm:py-9 transition-all duration-300 ${
-                    isHovered ? 'pl-3 sm:pl-5' : 'pl-0'
-                  }`}
-                >
-                  {/* Subtle Cyan Accent Indicator Line on Left */}
-                  <span
-                    className={`absolute left-0 top-0 bottom-0 w-[2px] bg-nex-cyan transition-all duration-300 ${
-                      isHovered ? 'opacity-100' : 'opacity-0'
+        {/* Empty State: ONLY shown when zero projects added via admin */}
+        {!loading && projects.length === 0 && (
+          <div className="py-20 my-8 bg-[#FFFCF7] border border-[#244638]/15 rounded-xl p-8 sm:p-12 text-center max-w-2xl mx-auto space-y-4 shadow-soft">
+            <div className="w-12 h-12 rounded-full bg-[#E6DFD3] flex items-center justify-center mx-auto text-[#244638]">
+              <FolderGit2 className="w-6 h-6 text-[#244638]" />
+            </div>
+            <h3 className="font-serif text-2xl sm:text-3xl text-[#244638]">
+              Project Archive // Standby
+            </h3>
+            <p className="text-sm text-[#686B61] leading-relaxed">
+              No project specifications are currently published. Case studies will be presented dynamically as they are approved and deployed via the engineering administration portal.
+            </p>
+            <div className="pt-2">
+              <Link
+                to="/admin"
+                className="inline-flex items-center gap-2 text-xs font-medium text-[#A15E40] hover:text-[#874E34] text-mono tracking-wider"
+              >
+                <span>OPEN ADMIN PORTAL TO PUBLISH A PROJECT</span>
+                <span>→</span>
+              </Link>
+            </div>
+          </div>
+        )}
+
+        {/* Active Projects Editorial Grid */}
+        {!loading && projects.length > 0 && (
+          <div className="pt-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+            
+            {/* LEFT: Editorial Rows (7 cols) */}
+            <div className="lg:col-span-7 divide-y divide-[#244638]/10">
+              {projects.map((project, idx) => {
+                const isHovered = (projects[hoveredIndex]?.slug || projects[0]?.slug) === project.slug;
+                const projectNum = project.number || `0${idx + 1}`;
+                const projectTitle = project.title || project.name;
+                const techList = Array.isArray(project.techStack)
+                  ? project.techStack
+                  : typeof project.technology === 'string'
+                  ? project.technology.split('/').map(t => t.trim())
+                  : ['Full Stack'];
+
+                return (
+                  <div
+                    key={project.slug || project.id}
+                    onMouseEnter={() => setHoveredIndex(idx)}
+                    className={`group relative py-8 transition-all duration-200 ${
+                      isHovered ? 'pl-4' : 'pl-0'
                     }`}
-                  />
+                  >
+                    {/* Left Copper Accent Bar */}
+                    <span
+                      className={`absolute left-0 top-0 bottom-0 w-[3px] bg-[#A15E40] transition-opacity duration-200 ${
+                        isHovered ? 'opacity-100' : 'opacity-0'
+                      }`}
+                    />
 
-                  <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4">
-                    {/* Number & Project Name & Domain */}
-                    <div className="flex items-baseline gap-4 sm:gap-8">
-                      <span className={`text-mono text-base font-bold transition-colors ${
-                        isHovered ? 'text-nex-cyan' : 'text-nex-muted'
-                      }`}>
-                        {project.number}
-                      </span>
+                    <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-3">
+                      <div className="flex items-baseline gap-4 sm:gap-6">
+                        <span className={`text-mono text-sm font-semibold ${
+                          isHovered ? 'text-[#A15E40]' : 'text-[#686B61]'
+                        }`}>
+                          {projectNum}
+                        </span>
 
-                      <div>
+                        <div>
+                          <Link
+                            to={`/projects/${project.slug}`}
+                            className="font-serif text-3xl sm:text-4xl text-[#244638] hover:text-[#A15E40] tracking-tight transition-colors inline-block"
+                          >
+                            {projectTitle}
+                          </Link>
+                          <div className="text-mono text-[10px] text-[#A15E40] tracking-wider mt-1">
+                            {project.domain || 'SYSTEMS ARCHITECTURE'}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-3 self-start sm:self-auto">
+                        <span className="text-[10px] text-mono px-2.5 py-1 rounded bg-[#FFFCF7] border border-[#244638]/12 text-[#244638]">
+                          {project.status || 'DEPLOYED'}
+                        </span>
                         <Link
                           to={`/projects/${project.slug}`}
-                          className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-nex-primary hover:text-nex-cyan-light tracking-tight transition-colors inline-block"
+                          className="inline-flex items-center gap-1 text-xs text-[#244638] font-medium hover:text-[#A15E40] transition-colors"
                         >
-                          {project.name}
+                          <span className="hidden sm:inline">SPEC</span>
+                          <ArrowUpRight className="w-4 h-4" />
                         </Link>
-                        <div className="text-mono text-[11px] text-nex-cyan tracking-wider mt-1">
-                          {project.domain}
-                        </div>
                       </div>
                     </div>
 
-                    {/* Status & Action */}
-                    <div className="flex items-center gap-4 text-mono text-xs self-start sm:self-auto">
-                      <span className="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-nex-secondary">
-                        {project.status}
-                      </span>
+                    <div className="mt-3.5 sm:ml-12 sm:pl-2 space-y-3">
+                      <p className="text-sm text-[#686B61] leading-relaxed max-w-xl font-normal">
+                        {project.shortDescription}
+                      </p>
+
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {techList.slice(0, 5).map((t) => (
+                          <span
+                            key={t}
+                            className="text-mono text-[10px] px-2 py-0.5 rounded bg-[#FFFCF7] border border-[#244638]/10 text-[#686B61]"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* RIGHT: Curated Editorial Case Preview (5 cols) */}
+            {activeProject && (
+              <div className="lg:col-span-5 lg:sticky lg:top-28">
+                <div className="bg-[#FFFCF7] rounded-xl p-6 sm:p-7 border border-[#244638]/15 shadow-card space-y-5">
+                  <div className="flex items-center justify-between pb-3.5 border-b border-[#244638]/10 text-mono text-[10px] text-[#686B61]">
+                    <span>PROJECT CASE TELEMETRY</span>
+                    <span className="text-[#A15E40] font-semibold">
+                      VERIFIED SPECIFICATION
+                    </span>
+                  </div>
+
+                  {/* Case Study Image or Visual Card */}
+                  <div className="relative rounded-lg overflow-hidden border border-[#244638]/12 bg-[#E6DFD3] aspect-[16/10] flex items-center justify-center">
+                    {activeProject.previewImage ? (
+                      <img
+                        src={activeProject.previewImage}
+                        alt={activeProject.title || activeProject.name}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                        }}
+                      />
+                    ) : null}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#244638]/70 via-transparent to-transparent flex items-end p-5">
+                      <div className="text-white">
+                        <span className="text-mono text-[10px] text-[#F5F0E8]/80 block">
+                          {activeProject.domain}
+                        </span>
+                        <span className="font-serif text-2xl text-white font-normal">
+                          {activeProject.title || activeProject.name}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Case Study Meta & Links */}
+                  <div className="space-y-3">
+                    <p className="text-xs sm:text-sm text-[#686B61] leading-relaxed">
+                      {activeProject.shortDescription}
+                    </p>
+
+                    <div className="pt-3 border-t border-[#244638]/10 flex flex-wrap items-center justify-between gap-3 text-xs">
+                      <div className="flex items-center gap-3">
+                        {activeProject.githubUrl && (
+                          <a
+                            href={activeProject.githubUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-1.5 text-[#244638] hover:text-[#A15E40] transition-colors"
+                          >
+                            <Github className="w-3.5 h-3.5" />
+                            <span className="text-mono text-[11px]">Source</span>
+                          </a>
+                        )}
+                        {activeProject.liveUrl && (
+                          <a
+                            href={activeProject.liveUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-1.5 text-[#244638] hover:text-[#A15E40] transition-colors"
+                          >
+                            <ExternalLink className="w-3.5 h-3.5" />
+                            <span className="text-mono text-[11px]">Live Preview</span>
+                          </a>
+                        )}
+                      </div>
+
                       <Link
-                        to={`/projects/${project.slug}`}
-                        className="inline-flex items-center gap-1.5 text-nex-primary hover:text-nex-cyan transition-colors"
+                        to={`/projects/${activeProject.slug}`}
+                        className="inline-flex items-center gap-1 font-medium text-[#244638] hover:text-[#A15E40] text-xs transition-colors"
                       >
-                        <span className="hidden sm:inline">VIEW SPEC</span>
-                        <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                        <span>Full Specification</span>
+                        <span>→</span>
                       </Link>
                     </div>
                   </div>
-
-                  {/* Description & Technology Row */}
-                  <div className="mt-4 sm:ml-12 sm:pl-4 space-y-2">
-                    <p className="text-sm sm:text-base text-nex-secondary/80 max-w-2xl leading-relaxed">
-                      {project.shortDescription}
-                    </p>
-                    <div className="text-mono text-[11px] text-nex-muted tracking-wider">
-                      TECH: <span className="text-nex-secondary">{project.technology}</span>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* RIGHT: High-tech Visual Preview Screen */}
-          <div className="hidden lg:block lg:col-span-4 sticky top-28">
-            <div className="card-glass rounded-xl p-4 border border-white/10 overflow-hidden shadow-2xl">
-              <div className="flex items-center justify-between pb-3 border-b border-white/10 text-mono text-[10px] text-nex-muted">
-                <span>SYSTEM PREVIEW // VISUAL TELEMETRY</span>
-                <span className="text-nex-cyan flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-nex-cyan animate-pulse" />
-                  ACTIVE STREAM
-                </span>
-              </div>
-
-              <div className="relative mt-3 rounded-lg overflow-hidden border border-white/10 bg-[#060A17] aspect-[16/10] flex items-center justify-center">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={hoveredProject.slug}
-                    src={hoveredProject.previewImage}
-                    alt={hoveredProject.name}
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="w-full h-full object-cover"
-                  />
-                </AnimatePresence>
-                <div className="absolute inset-0 bg-gradient-to-t from-[#080D1D] via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-mono text-xs">
-                  <span className="text-nex-primary font-bold">{hoveredProject.name}</span>
-                  <Link
-                    to={`/projects/${hoveredProject.slug}`}
-                    className="text-[11px] text-nex-cyan hover:underline flex items-center gap-1"
-                  >
-                    <span>SPECIFICATION</span>
-                    <ArrowUpRight className="w-3 h-3" />
-                  </Link>
                 </div>
               </div>
+            )}
 
-              <div className="mt-4 pt-3 border-t border-white/10 flex justify-between items-center text-mono text-[11px]">
-                <a
-                  href={hoveredProject.githubUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 text-nex-secondary hover:text-white transition-colors"
-                >
-                  <Github className="w-3.5 h-3.5" />
-                  <span>SOURCE CODE</span>
-                </a>
-                <Link
-                  to={`/projects/${hoveredProject.slug}`}
-                  className="text-nex-cyan hover:text-nex-cyan-light transition-colors"
-                >
-                  EXPLORE ARCHITECTURE →
-                </Link>
-              </div>
-            </div>
           </div>
+        )}
 
-        </div>
-
-        {/* View All Projects Footer Link */}
-        <div className="pt-12 text-center sm:text-left">
+        {/* Section Footer: Link to All Projects */}
+        <div className="pt-14 border-t border-[#244638]/12 mt-12 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <Link
             to="/projects"
-            className="inline-flex items-center gap-2 text-mono text-xs text-nex-cyan hover:text-nex-cyan-light tracking-wider border-b border-nex-cyan/30 hover:border-nex-cyan pb-1 transition-all"
+            className="inline-flex items-center gap-2 text-sm font-medium text-[#244638] hover:text-[#A15E40] transition-colors group"
           >
-            <span>VIEW ALL SYSTEMS &amp; ARCHITECTURAL SPECIFICATIONS</span>
-            <ArrowUpRight className="w-4 h-4" />
+            <span>View All Engineering Projects &amp; Specifications</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
+          <span className="text-mono text-[11px] text-[#686B61]">
+            SHOWING ARCHIVED REPOSITORIES &amp; PLATFORMS
+          </span>
         </div>
+
       </div>
     </section>
   );

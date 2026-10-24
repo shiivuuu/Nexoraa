@@ -11,35 +11,35 @@ const capabilities = [
     title: "Autonomous Agents & Neuro-Symbolic Verification",
     overview: "Engineering cognitive agent loops that execute multi-step deterministic workflows without hallucination. Combining transformer embeddings with formal logical deduction graphs.",
     deliverables: [
-      "Sub-100ms multi-modal vector retrieval and hybrid reranking",
-      "Formal proof verifiers integrated with Lean and Z3 Provers",
-      "Context-window memory persistence and session serialization",
-      "Autonomous code synthesis with unit-test feedback loops"
+      "First-order logic solver integration with LangChain orchestration",
+      "Deterministic graph constraint validation across Neo4j pipelines",
+      "Dynamic prompt grounding with zero-shot semantic verification",
+      "Sub-200ms edge SLM inference benchmarks on browser WebGPU"
     ],
-    status: "ACTIVE EXPERIMENTATION // Q4 2026"
+    status: "ACTIVE EXPERIMENTATION // 2026"
   },
   {
     num: "02",
     domain: "CYBERSECURITY",
     icon: ShieldAlert,
-    title: "Zero-Knowledge Cryptography & Offensive Research",
+    title: "Zero-Knowledge Cryptography & Defense",
     overview: "Building privacy-preserving communication protocols, ephemeral key exchanges, and automated exploit detection systems for national hackathons and distributed environments.",
     deliverables: [
-      "Zero-knowledge ephemeral state validation",
-      "Automated binary and kernel exploit signature analysis",
-      "Mesh packet encryption with elliptic-curve cryptography",
-      "CTF defensive countermeasure automation"
+      "zk-SNARK state verifications for multi-tenant collaborative hubs",
+      "Automated fuzzing and AST static analysis security bots",
+      "Hardware-isolated cryptographic enclave key management",
+      "Sub-millisecond packet entropy analysis for perimeter defense"
     ],
     status: "DEFENSE AUDITED // PRODUCTION"
   },
   {
     num: "03",
-    domain: "FULL STACK",
+    domain: "DISTRIBUTED SYSTEMS",
     icon: Database,
-    title: "Distributed Low-Latency Platforms & State Synchronization",
+    title: "Distributed Low-Latency Platforms & State Sync",
     overview: "Crafting scalable cloud architectures, reactive WebSocket event streams, and optimistic client interfaces that maintain consistency across global nodes.",
     deliverables: [
-      "High-concurrency Node.js and Express REST microservices",
+      "Sub-20ms WebSocket cluster state propagation engine",
       "Conflict-free replicated data types (CRDT) synchronization",
       "MongoDB Atlas schemas with hybrid offline caching fallback",
       "Production-ready Docker containers and CI/CD pipelines"
@@ -48,31 +48,31 @@ const capabilities = [
   },
   {
     num: "04",
-    domain: "AUTOMATION",
+    domain: "COMPUTER VISION",
     icon: Activity,
-    title: "Edge Computer Vision & Real-Time Spatial Perception",
-    overview: "Pioneering privacy-preserving crowd safety models, silhouette optical flow, and velocity gradient analytics running directly on edge hardware.",
+    title: "Edge Computer Vision & Crowd Safety Telemetry",
+    overview: "Deploying high-speed edge vision inference on low-power hardware, detecting motion anomalies, density gradients, and tracking objects without cloud latency.",
     deliverables: [
-      "Sub-120ms YOLOv8 edge inference on low-power devices",
-      "Crowd density heatmapping without facial biometric storage",
-      "Predictive bottleneck and turbulence alert triggers",
-      "Multi-channel automated emergency response uplinks"
+      "Real-time YOLOv8 density estimation regression head",
+      "Sub-120ms optical flow velocity vector field processing",
+      "Privacy-preserving edge silhouette filtering without facial storage",
+      "Automated siren dispatch and push notification hooks"
     ],
-    status: "NATIONAL HACKATHON WINNER"
+    status: "AWARD WINNING // COMPETITION VALIDATED"
   },
   {
     num: "05",
-    domain: "RESEARCH LABS",
+    domain: "DEVELOPER TECHNOLOGY",
     icon: Orbit,
-    title: "Local-First Computing & Disconnected Mesh Networks",
-    overview: "Investigating resilient computing models where software remains 100% operational in disconnected disaster zones and high-interference environments.",
+    title: "High-Throughput Developer Tooling & Automation",
+    overview: "Creating open-source CLI utilities, autonomous GitHub PR review bots, and vector-backed documentation intelligence engines that accelerate developer velocity.",
     deliverables: [
-      "Local browser-based SLM execution via WebGPU (Phi-3 / Gemma)",
-      "Peer-to-peer gossip replication over Bluetooth and mDNS",
-      "Cryptographically signed state envelopes",
-      "Distributed ledger reconciliation without centralized servers"
+      "Context-aware codebase indexing and syntax tree comprehension",
+      "Autonomous changelog generation and semantic versioning",
+      "Multi-modal document parsing (PDF, DOCX, Code, Schematics)",
+      "Zero-dependency local-first developer runtime tools"
     ],
-    status: "FRONTIER LAB // PROTOTYPE"
+    status: "OPEN SOURCE // COMMUNITY HUB"
   }
 ];
 
@@ -82,55 +82,58 @@ const ResearchSection = () => {
   const IconComponent = activeCap.icon;
 
   return (
-    <section id="research" className="relative py-24 sm:py-32 border-t border-white/10 bg-[#080D1D]">
-      <div className="max-w-[1550px] mx-auto px-5 sm:px-8 md:px-12">
+    <section id="research" className="relative py-24 sm:py-32 bg-[#244638] text-[#F5F0E8] select-none border-t border-[#1B362B]">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-14">
+        
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-12 border-b border-white/10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-white/12">
           <div>
-            <div className="text-mono text-xs text-nex-cyan tracking-widest mb-3 flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-nex-cyan" />
-              03 / RESEARCH
+            <div className="flex items-center gap-2 mb-3 text-mono text-xs text-[#A15E40] tracking-widest">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#A15E40]" />
+              02 / RESEARCH INITIATIVES
             </div>
-            <h2 className="font-editorial text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-nex-primary leading-none uppercase">
-              RESEARCH &amp;<br />CAPABILITIES
+            <h2 className="font-serif text-title text-[#FFFCF7] font-normal leading-none tracking-tight">
+              Frontier Systems &amp; Disciplines
             </h2>
           </div>
-          <div className="text-mono text-xs text-nex-muted max-w-xs">
-            FRONTIER EXPLORATION ACROSS 5 SPECIALIZED COMPUTATIONAL DOMAINS.
+          <div className="text-sm text-[#E6DFD3]/80 max-w-sm leading-relaxed">
+            Rigorous applied research across five specialized computational domains, combining verified mathematical logic with real-world low-latency systems.
           </div>
         </div>
 
         {/* Interactive Capability Selector Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 pt-12 items-start">
-          {/* LEFT: Selector List */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 pt-12 items-start">
+          
+          {/* LEFT: Selector List (5 cols) */}
           <div className="lg:col-span-5 space-y-2">
-            <div className="text-mono text-[10px] text-nex-muted tracking-[0.2em] mb-4">
-              DOMAIN DIRECTORY
+            <div className="text-mono text-[10px] text-[#E6DFD3]/60 tracking-widest mb-4">
+              RESEARCH DOMAINS
             </div>
+
             {capabilities.map((item, idx) => {
               const isCurrent = selected === idx;
               return (
                 <button
                   key={item.num}
                   onClick={() => setSelected(idx)}
-                  className={`w-full flex items-center justify-between p-4 rounded-lg text-left transition-all duration-300 border ${
+                  className={`w-full flex items-center justify-between p-4 rounded-lg text-left transition-all duration-200 border ${
                     isCurrent
-                      ? 'bg-nex-surface border-nex-cyan/40 text-nex-primary shadow-[0_0_15px_rgba(34,211,238,0.1)]'
-                      : 'bg-transparent border-white/5 text-nex-secondary/80 hover:border-white/15 hover:text-white'
+                      ? 'bg-[#1B362B] border-[#A15E40] text-[#FFFCF7] shadow-sm'
+                      : 'bg-transparent border-white/8 text-[#E6DFD3]/75 hover:border-white/20 hover:text-white'
                   }`}
                 >
-                  <div className="flex items-center gap-4">
-                    <span className={`text-mono text-xs font-bold ${
-                      isCurrent ? 'text-nex-cyan' : 'text-nex-muted'
+                  <div className="flex items-center gap-3.5">
+                    <span className={`text-mono text-xs font-semibold ${
+                      isCurrent ? 'text-[#A15E40]' : 'text-[#E6DFD3]/50'
                     }`}>
                       {item.num}
                     </span>
-                    <span className="text-mono text-xs sm:text-sm tracking-wider font-medium">
-                      / {item.domain}
+                    <span className="text-xs sm:text-sm font-medium tracking-wide">
+                      {item.domain}
                     </span>
                   </div>
                   <span className={`w-2 h-2 rounded-full transition-colors ${
-                    isCurrent ? 'bg-nex-cyan shadow-[0_0_8px_#22D3EE]' : 'bg-white/10'
+                    isCurrent ? 'bg-[#A15E40]' : 'bg-white/15'
                   }`} />
                 </button>
               );
@@ -139,55 +142,55 @@ const ResearchSection = () => {
             <div className="pt-6">
               <Link
                 to="/research"
-                className="inline-flex items-center gap-2 text-mono text-xs text-nex-cyan hover:text-nex-cyan-light tracking-wider"
+                className="inline-flex items-center gap-2 text-xs text-[#E6DFD3] hover:text-[#FFFCF7] transition-colors font-medium border-b border-white/20 pb-1"
               >
-                <span>VIEW FULL RESEARCH PAPERS &amp; LAB BENCHMARKS</span>
-                <ArrowUpRight className="w-4 h-4" />
+                <span>Explore Full Research Papers &amp; Benchmarks</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#A15E40]" />
               </Link>
             </div>
           </div>
 
-          {/* RIGHT: Large Capability Card with Smooth Animation */}
+          {/* RIGHT: Selected Capability Card (7 cols) */}
           <div className="lg:col-span-7">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeCap.num}
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="card-glass-active p-8 sm:p-10 rounded-xl space-y-6"
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                className="bg-[#1B362B] p-7 sm:p-10 rounded-xl border border-white/12 shadow-elevated space-y-6"
               >
                 {/* Card Top Metadata */}
                 <div className="flex items-center justify-between border-b border-white/10 pb-4 text-mono text-xs">
-                  <div className="flex items-center gap-2 text-nex-cyan">
+                  <div className="flex items-center gap-2 text-[#A15E40]">
                     <IconComponent className="w-4 h-4" />
                     <span>DOMAIN SPECIFICATION // {activeCap.num}</span>
                   </div>
-                  <div className="text-[10px] text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-2 py-0.5 rounded">
+                  <div className="text-[10px] text-[#E6DFD3] bg-[#244638] border border-white/15 px-2.5 py-0.5 rounded">
                     {activeCap.status}
                   </div>
                 </div>
 
                 {/* Capability Title */}
-                <h3 className="font-editorial text-2xl sm:text-3xl lg:text-4xl text-nex-primary tracking-tight leading-tight">
+                <h3 className="font-serif text-2xl sm:text-3xl text-[#FFFCF7] tracking-tight leading-snug">
                   {activeCap.title}
                 </h3>
 
                 {/* Capability Overview */}
-                <p className="text-base text-nex-secondary/90 leading-relaxed font-normal">
+                <p className="text-sm sm:text-base text-[#E6DFD3]/85 leading-relaxed font-normal">
                   {activeCap.overview}
                 </p>
 
                 {/* Key Research Deliverables */}
-                <div className="pt-4 border-t border-white/10 space-y-3">
-                  <div className="text-mono text-[11px] text-nex-muted tracking-wider">
-                    CORE DELIVERABLES &amp; SYSTEM CAPABILITIES:
+                <div className="pt-5 border-t border-white/10 space-y-3">
+                  <div className="text-mono text-[10px] text-[#A15E40] tracking-widest">
+                    SYSTEM DELIVERABLES &amp; CAPABILITIES:
                   </div>
                   <ul className="space-y-2.5">
                     {activeCap.deliverables.map((d, i) => (
-                      <li key={i} className="flex items-start gap-3 text-sm text-nex-secondary">
-                        <span className="text-nex-cyan font-mono text-xs mt-0.5">❯</span>
+                      <li key={i} className="flex items-start gap-3 text-sm text-[#E6DFD3]/90">
+                        <span className="text-[#A15E40] text-xs mt-0.5">■</span>
                         <span>{d}</span>
                       </li>
                     ))}
@@ -196,7 +199,9 @@ const ResearchSection = () => {
               </motion.div>
             </AnimatePresence>
           </div>
+
         </div>
+
       </div>
     </section>
   );

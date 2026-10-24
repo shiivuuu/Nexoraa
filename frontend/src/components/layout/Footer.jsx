@@ -22,114 +22,106 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="relative border-t border-white/10 bg-[#080D1D] text-nex-primary overflow-hidden pt-16 sm:pt-20 pb-12 select-none">
-      {/* Ambient background glow behind giant wordmark */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-64 bg-radial from-nex-cyan/10 via-nex-electric/5 to-transparent blur-3xl pointer-events-none" />
-
-      <div className="max-w-[1550px] mx-auto px-5 sm:px-8 md:px-12 relative z-10">
-        {/* Top Grid: Brand & Navigation & Clocks */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 pb-16 border-b border-white/10">
+    <footer className="relative bg-[#244638] text-[#F5F0E8] overflow-hidden pt-16 sm:pt-20 pb-12 select-none border-t border-[#1B362B]">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-14 relative z-10">
+        {/* Top Grid: Brand, Active Clocks, Navigation */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-14 border-b border-white/10">
           {/* Brand Info */}
           <div className="md:col-span-5 space-y-4">
-            <Logo size="md" glow={true} />
-            <p className="font-editorial text-lg sm:text-xl text-nex-secondary/90 tracking-tight max-w-sm mt-3">
-              "BUILDING WHAT COMES NEXT."
+            <div className="flex items-center gap-3">
+              <span className="font-serif text-3xl sm:text-4xl tracking-tight text-[#FFFCF7]">
+                NEXORA
+              </span>
+              <span className="text-mono text-[10px] text-[#A15E40] tracking-widest pl-3 border-l border-white/15">
+                COLLECTIVE
+              </span>
+            </div>
+            <p className="text-sm text-[#E6DFD3]/80 max-w-sm font-normal leading-relaxed">
+              An independent engineering lab focused on foundational artificial intelligence, high-performance distributed systems, and verified software architecture.
             </p>
-            <p className="text-sm text-nex-muted max-w-sm leading-relaxed">
-              AI, engineering and experimentation for the next generation of technology. A serious collective of builders and researchers.
-            </p>
-            <div className="text-mono text-xs text-nex-cyan flex items-center gap-2 pt-2">
-              <span className="w-2 h-2 rounded-full bg-nex-cyan animate-pulse" />
-              <span>SYSTEM / ONLINE</span>
-              <span className="text-white/20">|</span>
-              <span className="text-nex-muted">BUILD / 2026.1</span>
+            <div className="pt-2 text-mono text-xs text-[#E6DFD3]/60">
+              MUMBAI // BENGALURU // REMOTE
             </div>
           </div>
 
           {/* Active Nodes Clocks */}
           <div className="md:col-span-3 text-mono text-xs space-y-3">
-            <div className="text-nex-primary font-semibold tracking-wider pb-1 border-b border-white/10">
-              ACTIVE NODES
+            <div className="text-[#A15E40] tracking-widest text-[11px]">
+              OBSERVATORY // TELEMETRY
             </div>
-            <div className="flex justify-between items-center text-nex-secondary">
-              <span>MUMBAI (IST)</span>
-              <span className="text-nex-cyan-light font-mono">{times.mumbai}</span>
-            </div>
-            <div className="flex justify-between items-center text-nex-secondary">
-              <span>UTC PROTOCOL</span>
-              <span className="text-nex-cyan-light font-mono">{times.utc}</span>
-            </div>
-            <div className="flex justify-between items-center text-nex-secondary">
-              <span>NODE STATUS</span>
-              <span className="text-emerald-400">ACTIVE &amp; SYNCD</span>
+            <div className="space-y-2 text-[#E6DFD3]/80">
+              <div className="flex justify-between border-b border-white/10 pb-1.5">
+                <span>MUMBAI (IST)</span>
+                <span className="text-[#FFFCF7] font-medium">{times.mumbai}</span>
+              </div>
+              <div className="flex justify-between border-b border-white/10 pb-1.5">
+                <span>UTC COORDINATED</span>
+                <span className="text-[#FFFCF7] font-medium">{times.utc}</span>
+              </div>
+              <div className="flex justify-between pt-0.5 text-[11px] text-[#E6DFD3]/60">
+                <span>SYSTEM STATUS</span>
+                <span className="text-[#A15E40] font-medium">ONLINE // OPERATIONAL</span>
+              </div>
             </div>
           </div>
 
           {/* Navigation Links */}
-          <div className="md:col-span-2 text-mono text-xs space-y-2.5">
-            <div className="text-nex-primary font-semibold tracking-wider pb-1 border-b border-white/10">
-              NAVIGATION
+          <div className="md:col-span-2 text-xs space-y-3">
+            <div className="text-mono text-[#A15E40] tracking-widest text-[11px]">
+              INDEX
             </div>
-            <ul className="space-y-2 text-nex-secondary">
-              <li><Link to="/projects" className="hover:text-nex-cyan transition-colors">WORK</Link></li>
-              <li><Link to="/research" className="hover:text-nex-cyan transition-colors">RESEARCH</Link></li>
-              <li><Link to="/team" className="hover:text-nex-cyan transition-colors">TEAM</Link></li>
-              <li><Link to="/community" className="hover:text-nex-cyan transition-colors">COMMUNITY</Link></li>
-              <li><Link to="/ai" className="hover:text-nex-cyan transition-colors">AI SYSTEM</Link></li>
-              <li><Link to="/join" className="hover:text-nex-cyan transition-colors">JOIN COLLECTIVE</Link></li>
-              <li><Link to="/contact" className="hover:text-nex-cyan transition-colors">CONTACT</Link></li>
+            <ul className="space-y-2 text-[#E6DFD3]/80">
+              <li><Link to="/projects" className="hover:text-white transition-colors">Work</Link></li>
+              <li><Link to="/research" className="hover:text-white transition-colors">Research</Link></li>
+              <li><Link to="/team" className="hover:text-white transition-colors">The Team</Link></li>
+              <li><Link to="/community" className="hover:text-white transition-colors">Community</Link></li>
+              <li><Link to="/ai" className="hover:text-white transition-colors">AI Intelligence</Link></li>
+              <li><Link to="/about" className="hover:text-white transition-colors">Manifesto</Link></li>
             </ul>
           </div>
 
-          {/* Socials & Admin */}
-          <div className="md:col-span-2 text-mono text-xs space-y-2.5">
-            <div className="text-nex-primary font-semibold tracking-wider pb-1 border-b border-white/10">
-              CONNECT
+          {/* Connect & Admin */}
+          <div className="md:col-span-2 text-xs space-y-3">
+            <div className="text-mono text-[#A15E40] tracking-widest text-[11px]">
+              NETWORK
             </div>
-            <ul className="space-y-2 text-nex-secondary">
+            <ul className="space-y-2 text-[#E6DFD3]/80">
               <li>
-                <a href="https://github.com/shivam-upendra" target="_blank" rel="noreferrer" className="hover:text-nex-cyan transition-colors flex items-center gap-1">
-                  <span>GITHUB</span>
-                  <span>↗</span>
+                <a
+                  href="https://github.com/shiivuuu/Nexoraa"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-white transition-colors inline-flex items-center gap-1.5"
+                >
+                  <span>GitHub</span>
+                  <span className="text-[10px] text-[#A15E40]">↗</span>
                 </a>
               </li>
-              <li>
-                <a href="https://linkedin.com/in/shivam-yadav" target="_blank" rel="noreferrer" className="hover:text-nex-cyan transition-colors flex items-center gap-1">
-                  <span>LINKEDIN</span>
-                  <span>↗</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://discord.gg/nexoraa" target="_blank" rel="noreferrer" className="hover:text-nex-cyan transition-colors flex items-center gap-1">
-                  <span>DISCORD</span>
-                  <span>↗</span>
-                </a>
-              </li>
-              <li className="pt-2">
-                <Link to="/admin/login" className="text-nex-muted hover:text-nex-cyan transition-colors flex items-center gap-1 text-[11px]">
-                  <span>ADMIN PORTAL</span>
-                  <span>🔒</span>
+              <li><Link to="/contact" className="hover:text-white transition-colors">Contact Inquiries</Link></li>
+              <li><Link to="/join" className="hover:text-white transition-colors">Join Fellowship</Link></li>
+              <li className="pt-3 border-t border-white/10">
+                <Link
+                  to="/admin"
+                  className="text-mono text-[11px] text-[#E6DFD3]/60 hover:text-[#FFFCF7] transition-colors"
+                >
+                  Admin Portal →
                 </Link>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Giant Illuminated Wordmark Section inspired by Sahiko */}
-        <div className="relative py-12 sm:py-16 text-center select-none overflow-hidden">
-          <div className="font-editorial text-[16vw] sm:text-[14vw] md:text-[13vw] font-extrabold tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-b from-white/20 via-white/10 to-transparent pointer-events-none transition-all">
-            NEXORAA
+        {/* Editorial Giant Wordmark in Instrument Serif */}
+        <div className="pt-12 sm:pt-16 pb-6 text-center select-none overflow-hidden">
+          <div className="font-serif text-[clamp(3.5rem,12vw,9.5rem)] font-normal text-[#FFFCF7]/15 leading-none tracking-tight">
+            NEXORA
           </div>
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-mono text-[11px] text-nex-muted pt-6 border-t border-white/5">
+          <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#E6DFD3]/60 text-mono">
             <div>
-              © 2026 NEXORAA TECHNOLOGY COLLECTIVE. ALL RIGHTS RESERVED.
+              &copy; {new Date().getFullYear()} NEXORA COLLECTIVE. ALL RIGHTS RESERVED.
             </div>
-            <div className="flex items-center gap-4 text-nex-secondary/70">
-              <span>LATENCY: 12ms</span>
-              <span>•</span>
-              <span>ENGINE: VITE / REACT / NODE</span>
-              <span>•</span>
-              <span className="text-nex-cyan">SECURE LINK</span>
+            <div className="text-[#A15E40]">
+              BUILT FOR WHAT COMES NEXT
             </div>
           </div>
         </div>

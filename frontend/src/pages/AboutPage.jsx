@@ -5,92 +5,118 @@ import { Link } from 'react-router-dom';
 const pillars = [
   {
     num: "01",
-    title: "FOUNDATIONAL ENGINEERING",
+    title: "Foundational Engineering",
     desc: "We prioritize clean algorithms, strong type safety, and low-latency system design over superficial frameworks. Every line of code is intentional."
   },
   {
     num: "02",
-    title: "AI WITH DETERMINISTIC INTEGRITY",
-    desc: "We combine generative probabilistic intelligence with symbolic logic graphs and formal theorem verifiers to eradicate hallucinations."
+    title: "AI with Deterministic Integrity",
+    desc: "We combine generative probabilistic models with symbolic logic graphs and formal theorem verifiers to eradicate hallucinations."
   },
   {
     num: "03",
-    title: "TACTILE & EDITORIAL UX",
-    desc: "Inspired by minimalist physical editorial design, negative space, and micro-interactions. Software should feel like an instrument, not a template."
+    title: "Tactile & Editorial Design",
+    desc: "Inspired by minimalist physical editorial design, generous negative space, and disciplined typography. Software should feel like an engineered instrument."
   },
   {
     num: "04",
-    title: "OPEN COMMUNITY & COMPETITION",
-    desc: "We validate our architectures in high-stakes national and international hackathons, open-sourcing our core findings to empower the next generation."
+    title: "Open Community & Fellowship",
+    desc: "We validate our architectures through open-source collaboration, peer review, and competitive engineering sprints."
   }
 ];
 
 const AboutPage = () => {
   return (
-    <div className="min-h-screen pt-28 sm:pt-32 pb-24 bg-[#080D1D] text-nex-primary">
-      <div className="max-w-[1550px] mx-auto px-5 sm:px-8 md:px-12">
+    <div className="min-h-screen pt-32 sm:pt-36 pb-24 bg-[#F5F0E8] text-[#252922]">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-14">
+        
         {/* Header */}
-        <div className="pb-12 border-b border-white/10 space-y-4">
-          <div className="text-mono text-xs text-nex-cyan tracking-widest flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-nex-cyan" />
-            02 / ABOUT NEXORAA
+        <div className="pb-12 border-b border-[#244638]/12 space-y-4">
+          <div className="flex items-center gap-2 text-mono text-xs text-[#A15E40] tracking-widest">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#A15E40]" />
+            ORGANIZATIONAL MANIFESTO
           </div>
-          <h1 className="font-editorial text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-nex-primary uppercase tracking-tight leading-none">
-            WE BUILD<br />WHAT COMES NEXT.
+          <h1 className="font-serif text-display text-[#244638] font-normal tracking-tight">
+            The Nexora Collective
           </h1>
-          <p className="text-lg sm:text-xl text-nex-secondary/90 max-w-3xl leading-relaxed font-normal pt-2">
-            Nexoraa is an elite technology collective focused on artificial intelligence, software engineering, cybersecurity, experimentation, and community-driven innovation.
+          <p className="text-base sm:text-lg text-[#686B61] max-w-2xl font-normal leading-relaxed">
+            An independent research lab and engineering collective founded by Shivam Upendra Yadav, dedicated to building verified software, distributed systems, and real-world intelligence.
           </p>
         </div>
 
         {/* Narrative Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 py-16 border-b border-white/10">
-          <div className="lg:col-span-4 text-mono text-xs text-nex-cyan space-y-2">
-            <div>CORE MISSION &amp; ORIGIN</div>
-            <div className="text-nex-muted">ESTABLISHED 2025 // BENGALURU &amp; GLOBAL</div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 py-16 border-b border-[#244638]/12 items-start">
+          <div className="lg:col-span-5 space-y-4">
+            <span className="text-mono text-xs text-[#A15E40] tracking-widest block">
+              MISSION // VISION
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl text-[#244638]">
+              Rejecting generic software templates and synthetic wrappers.
+            </h2>
           </div>
-          <div className="lg:col-span-8 space-y-6 text-base sm:text-lg text-nex-secondary/90 leading-relaxed font-normal">
+
+          <div className="lg:col-span-7 space-y-6 text-sm sm:text-base text-[#686B61] leading-relaxed">
             <p>
-              In a technology landscape inundated by template wrappers and superficial SaaS products, Nexoraa was formed to return software development to its uncompromising architectural roots. We are a collective of developers, machine learning researchers, and system designers united by a single purpose: engineering deep-tech tools that solve critical computational bottlenecks.
+              In an era dominated by superficial software wrappers and low-effort generative clones, Nexora stands for disciplined systems engineering. We believe that true technological leverage comes from understanding memory layouts, networking sockets, deterministic constraint satisfaction, and high-performance concurrency.
             </p>
             <p>
-              From edge-based computer vision crowd safety systems deployed in national competitions (NetraAI) to autonomous engineering command centers (NEXUS) and local-first mesh runtimes (XAPEXX), our systems operate at the bleeding edge of performance, security, and human-computer ergonomics.
+              From edge-based computer vision crowd safety systems deployed in national competitions to autonomous engineering command centers and local-first mesh runtimes, our systems operate at the bleeding edge of performance, security, and human-computer ergonomics.
             </p>
           </div>
         </div>
 
         {/* 4 Architectural Pillars */}
-        <div className="py-16 border-b border-white/10 space-y-10">
-          <div className="text-mono text-xs text-nex-cyan tracking-widest">
-            OUR ARCHITECTURAL PILLARS
+        <div className="py-16 border-b border-[#244638]/12 space-y-10">
+          <div className="flex items-center justify-between">
+            <div>
+              <span className="text-mono text-xs text-[#A15E40] tracking-widest block mb-2">
+                CORE TENETS
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl text-[#244638]">
+                Architectural Foundations
+              </h2>
+            </div>
+            <span className="text-mono text-xs text-[#686B61]">
+              04 PILLARS
+            </span>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {pillars.map((p) => (
-              <div key={p.num} className="card-glass p-8 rounded-xl border border-white/10 space-y-3">
-                <div className="text-mono text-xs text-nex-cyan font-bold">{p.num}</div>
-                <h3 className="font-editorial text-2xl font-bold text-nex-primary">{p.title}</h3>
-                <p className="text-sm text-nex-secondary leading-relaxed">{p.desc}</p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {pillars.map((pillar) => (
+              <div
+                key={pillar.num}
+                className="bg-[#FFFCF7] p-6 rounded-xl border border-[#244638]/15 shadow-card space-y-3"
+              >
+                <span className="font-serif text-3xl text-[#A15E40]">{pillar.num}</span>
+                <h3 className="font-serif text-xl text-[#244638]">
+                  {pillar.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-[#686B61] leading-relaxed">
+                  {pillar.desc}
+                </p>
               </div>
             ))}
           </div>
         </div>
 
         {/* Action Link */}
-        <div className="pt-16 flex flex-wrap items-center gap-6 text-mono text-xs">
+        <div className="pt-14 flex flex-wrap items-center gap-6">
           <Link
             to="/projects"
-            className="px-6 py-3.5 bg-nex-cyan hover:bg-nex-cyan-light text-[#080D1D] font-bold rounded-lg transition-all flex items-center gap-2"
+            className="btn-primary"
           >
-            <span>EXPLORE OUR SYSTEMS</span>
+            <span>Explore Our Systems</span>
             <ArrowUpRight className="w-4 h-4" />
           </Link>
+
           <Link
-            to="/join"
-            className="px-6 py-3.5 border border-white/15 hover:border-nex-cyan rounded-lg text-nex-primary transition-all flex items-center gap-2"
+            to="/contact"
+            className="btn-secondary"
           >
-            <span>APPLY TO JOIN THE COLLECTIVE →</span>
+            <span>Initiate Contact</span>
           </Link>
         </div>
+
       </div>
     </div>
   );

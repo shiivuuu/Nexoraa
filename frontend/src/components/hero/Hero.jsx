@@ -1,174 +1,134 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Terminal } from 'lucide-react';
+import { ArrowUpRight, ArrowDown, Cpu, Layers, ShieldCheck, Terminal, Compass } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import StackedCards from './StackedCards';
 
-const heroCardsData = [
+const focusAreas = [
   {
-    number: '01',
-    badge: 'AI / ML',
-    title: 'ARTIFICIAL INTELLIGENCE',
-    description: 'We build intelligent systems, autonomous AI agents, adaptive RAG workflows, and machine learning experiences engineered for real-world reliability.',
-    tags: ['MODELS', 'AUTOMATION', 'RAG', 'AGENTS'],
-    route: '/research'
+    num: '01',
+    title: 'Foundational AI & Reasoning',
+    summary: 'Autonomous agent orchestration, hybrid neuro-symbolic reasoning verifiers, and high-precision RAG systems.',
+    discipline: 'MACHINE INTELLIGENCE',
+    link: '/research'
   },
   {
-    number: '02',
-    badge: 'SYSTEMS',
-    title: 'FULL STACK SYSTEMS',
-    description: 'Scalable web platforms, WebSocket state synchronization protocols, distributed developer tools, and resilient production architectures.',
-    tags: ['REACT', 'NODE', 'MONGODB', 'CLOUD'],
-    route: '/projects'
+    num: '02',
+    title: 'High-Velocity Distributed Systems',
+    summary: 'Low-latency event pipelines, WebSocket real-time state synchronization, and fault-tolerant local-first runtimes.',
+    discipline: 'SYSTEMS ARCHITECTURE',
+    link: '/projects'
   },
   {
-    number: '03',
-    badge: 'DEFENSE',
-    title: 'CYBERSECURITY',
-    description: 'Offensive and defensive security research, zero-knowledge encryption, network vulnerability penetration testing, and privacy-first protocols.',
-    tags: ['SECURITY', 'RESEARCH', 'NETWORKS', 'PRIVACY'],
-    route: '/research'
+    num: '03',
+    title: 'Edge Computer Vision & Perception',
+    summary: 'Sub-120ms privacy-preserving edge inference, optical flow telemetry, and real-time spatial density monitoring.',
+    discipline: 'SPATIAL TELEMETRY',
+    link: '/research'
   },
   {
-    number: '04',
-    badge: 'TOOLING',
-    title: 'DEVELOPER TECHNOLOGY',
-    description: 'High-throughput tools and runtimes that transform the way engineers write code, collaborate autonomously, and deploy decentralized systems.',
-    tags: ['DEVTOOLS', 'APIs', 'AUTOMATION', 'OPEN SOURCE'],
-    route: '/projects'
-  },
-  {
-    number: '05',
-    badge: 'R&D',
-    title: 'EXPERIMENTAL LABS',
-    description: 'Pioneering frontier research, local-first CRDT mesh networks, neuro-symbolic logic engines, and next-generation human-machine interfaces.',
-    tags: ['R&D', 'PROTOTYPES', 'EXPERIMENTS', 'FUTURE'],
-    route: '/research'
+    num: '04',
+    title: 'Defensive Security & Tooling',
+    summary: 'Decentralized cryptographic proofs, developer automation runtimes, and verified open-source engineering tools.',
+    discipline: 'SECURITY & DEVTOOLS',
+    link: '/projects'
   }
 ];
 
 const Hero = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activePillar, setActivePillar] = useState(0);
 
-  const scrollToNext = () => {
-    const nextSection = document.getElementById('about');
-    if (nextSection) {
-      nextSection.scrollIntoView({ behavior: 'smooth' });
+  const scrollToProjects = () => {
+    const el = document.getElementById('projects');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <section className="relative min-h-[92vh] lg:min-h-screen pt-28 sm:pt-32 pb-16 flex flex-col justify-between overflow-hidden bg-tech-grid ambient-glow">
-      <div className="max-w-[1550px] w-full mx-auto px-5 sm:px-8 md:px-12 my-auto">
-        {/* Two-Column Composition: Left ~40%, Right ~60% */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+    <section className="relative min-h-[90vh] lg:min-h-screen pt-32 sm:pt-36 lg:pt-40 pb-20 sm:pb-24 flex flex-col justify-between bg-[#F5F0E8] text-[#252922] overflow-hidden">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-14 w-full">
+        {/* Asymmetric 12-Column Editorial Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* LEFT COLUMN: Large Editorial Typography & Category Selector */}
-          <motion.div 
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 flex flex-col justify-center"
-          >
-            {/* Small Technical Label */}
-            <div className="flex items-center gap-3 text-mono text-xs text-nex-cyan tracking-widest mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-nex-cyan animate-pulse" />
-              <span>NEXORAA / TECHNOLOGY COLLECTIVE</span>
+          {/* LEFT: 7 Columns — Expressive Editorial Statement */}
+          <div className="lg:col-span-7 space-y-8">
+            {/* Pill Eyebrow */}
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-full bg-[#FFFCF7] border border-[#244638]/15 text-xs text-[#244638] font-medium shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#A15E40]" />
+              <span className="text-mono text-[11px] tracking-wider text-[#244638]">
+                EST. 2026 // ENGINEERING COLLECTIVE &amp; LAB
+              </span>
             </div>
 
-            {/* Giant Editorial Headline */}
-            <h1 className="font-editorial text-5xl sm:text-6xl md:text-7xl lg:text-[76px] font-extrabold text-nex-primary tracking-tight leading-[0.92] uppercase">
-              BUILDING<br />
-              WHAT<br />
-              COMES NEXT.
+            {/* Editorial Headline in Instrument Serif */}
+            <h1 className="font-serif text-display text-[#244638] font-normal tracking-tight">
+              Engineering foundational intelligence and resilient computational architectures.
             </h1>
 
-            {/* Supporting Statement */}
-            <p className="font-editorial text-lg sm:text-xl text-nex-secondary/90 tracking-tight mt-6 uppercase">
-              AI, ENGINEERING &amp; EXPERIMENTATION.
+            {/* Controlled Text Width in DM Sans */}
+            <p className="text-base sm:text-lg text-[#686B61] max-w-xl font-normal leading-relaxed">
+              Nexora is an independent technology collective focused on production systems, computer vision perception, and verifiable reasoning engines. Built from foundational principles without template bloat or artificial superficiality.
             </p>
 
-            {/* Technical Metadata Row */}
-            <div className="flex flex-wrap items-center gap-4 text-mono text-[11px] text-nex-muted tracking-wider py-4 my-2 border-y border-white/10">
-              <div>BUILD / 2026</div>
-              <span className="text-white/20">•</span>
-              <div className="text-emerald-400 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                STATUS / ACTIVE
-              </div>
-              <span className="text-white/20">•</span>
-              <div>NODES / 05+</div>
+            {/* CTAs & Quick Metrics */}
+            <div className="pt-2 flex flex-wrap items-center gap-4">
+              <button
+                onClick={scrollToProjects}
+                className="btn-primary"
+              >
+                <span>Explore Selected Work</span>
+                <span className="text-xs">↓</span>
+              </button>
+
+              <Link
+                to="/research"
+                className="btn-secondary"
+              >
+                <span>Research Initiatives</span>
+                <ArrowUpRight className="w-4 h-4 text-[#A15E40]" />
+              </Link>
             </div>
 
-            {/* Category Navigation Selector */}
-            <div className="mt-4 space-y-2">
-              <div className="text-mono text-[10px] text-nex-muted tracking-[0.2em] mb-2">
-                INDEX // SELECT DOMAIN
+            {/* Sub-footer metadata */}
+            <div className="pt-8 border-t border-[#244638]/12 grid grid-cols-2 sm:grid-cols-3 gap-6 text-xs text-[#686B61]">
+              <div>
+                <span className="block text-mono text-[10px] text-[#A15E40] tracking-wider">FOUNDER &amp; ARCHITECT</span>
+                <span className="font-medium text-[#252922] mt-0.5 block">Shivam Upendra Yadav</span>
               </div>
-              <div className="space-y-1.5 text-mono text-xs">
-                {heroCardsData.map((item, idx) => {
-                  const isSelected = activeIndex === idx;
-                  return (
-                    <button
-                      key={item.number}
-                      onClick={() => setActiveIndex(idx)}
-                      className={`group w-full flex items-center justify-between px-3 py-2 rounded text-left transition-all duration-200 border ${
-                        isSelected
-                          ? 'bg-nex-darkblue/70 border-nex-cyan/40 text-nex-primary shadow-[0_0_12px_rgba(34,211,238,0.12)]'
-                          : 'bg-transparent border-transparent text-nex-secondary/70 hover:text-nex-primary hover:border-white/10'
-                      }`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <span className={`text-[11px] font-semibold transition-colors ${
-                          isSelected ? 'text-nex-cyan' : 'text-nex-muted group-hover:text-nex-secondary'
-                        }`}>
-                          {item.number}
-                        </span>
-                        <span className="tracking-wider">
-                          / {item.title}
-                        </span>
-                      </div>
-                      <span className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${
-                        isSelected ? 'bg-nex-cyan scale-125' : 'bg-transparent group-hover:bg-white/30'
-                      }`} />
-                    </button>
-                  );
-                })}
+              <div>
+                <span className="block text-mono text-[10px] text-[#A15E40] tracking-wider">PRIMARY DOMAINS</span>
+                <span className="font-medium text-[#252922] mt-0.5 block">AI, Systems &amp; Vision</span>
+              </div>
+              <div className="hidden sm:block">
+                <span className="block text-mono text-[10px] text-[#A15E40] tracking-wider">LOCATION</span>
+                <span className="font-medium text-[#252922] mt-0.5 block">Mumbai // Distributed</span>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          {/* RIGHT COLUMN: Interactive Stacked Cards */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 flex justify-center lg:justify-end items-center"
-          >
+          {/* RIGHT: 5 Columns — Art-Directed Editorial Case Panel */}
+          <div className="lg:col-span-5">
             <StackedCards
-              cards={heroCardsData}
-              activeIndex={activeIndex}
-              onSelectCard={setActiveIndex}
+              items={focusAreas}
+              activeIndex={activePillar}
+              onSelectIndex={setActivePillar}
             />
-          </motion.div>
+          </div>
 
         </div>
       </div>
 
-      {/* Minimal Scroll Indicator */}
-      <div className="max-w-[1550px] w-full mx-auto px-5 sm:px-8 md:px-12 mt-8 flex justify-between items-center text-mono text-xs text-nex-muted select-none">
+      {/* Bottom Scroll Prompt */}
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-14 w-full pt-12 flex items-center justify-between text-mono text-[11px] text-[#686B61]">
         <button
-          onClick={scrollToNext}
-          className="group inline-flex items-center gap-2 hover:text-nex-cyan transition-colors"
-          aria-label="Scroll down to explore"
+          onClick={scrollToProjects}
+          className="inline-flex items-center gap-2 hover:text-[#244638] transition-colors group cursor-pointer"
         >
-          <span>SCROLL TO EXPLORE</span>
-          <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-1 transition-transform" />
+          <ArrowDown className="w-3.5 h-3.5 text-[#A15E40] group-hover:translate-y-0.5 transition-transform" />
+          <span>SCROLL TO VIEW CASE STUDIES</span>
         </button>
-        <div className="hidden sm:flex items-center gap-4 text-[11px] text-nex-muted/60">
-          <span>01 / 05 DOMAINS</span>
-          <span>•</span>
-          <span>AUTONOMOUS SYSTEMS</span>
-        </div>
+        <span className="hidden sm:inline text-[#A15E40]">INDEX // VOL. 01</span>
       </div>
     </section>
   );

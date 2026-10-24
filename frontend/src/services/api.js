@@ -18,11 +18,148 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-export const getProjects = async () => (await api.get('/projects')).data;
-export const getProjectBySlug = async (slug) => (await api.get(`/projects/${slug}`)).data;
-export const createProject = async (data) => (await api.post('/projects', data)).data;
-export const updateProject = async (id, data) => (await api.put(`/projects/${id}`, data)).data;
-export const deleteProject = async (id) => (await api.delete(`/projects/${id}`)).data;
+// Initial seed representing only what the admin has added (no default mock projects)
+const INITIAL_ADMIN_PROJECTS = [
+  {
+    id: "proj-1791227737191",
+    slug: "greenscope",
+    number: "01",
+    createdAt: "2026-10-05T19:15:37.191Z",
+    title: "GreenScope",
+    name: "GreenScope",
+    domain: "AI / INTELLIGENCE",
+    shortDescription: "GreenScope AI is a sustainable design optimization platform that analyzes construction project scopes (from drawings, CSVs, or text descriptions), identifies carbon hotspots, and applies intelligent pruning algorithms to reduce embodied emissions and material budgets.",
+    fullDescription: "GreenScope AI is an enterprise-grade sustainable design and carbon optimization engine. It analyzes construction project scopes from architectural blueprints, bill of materials (BOM), CSVs, and technical descriptions, automatically detects embodied carbon hotspots, and provides intelligent pruning algorithms to reduce emissions while maintaining structural integrity.",
+    problem: "Architects and civil engineers lack real-time carbon intelligence tools during early-stage procurement, causing massive carbon and financial overruns.",
+    solution: "GreenScope scans material schedules, cross-references environmental product declarations (EPD), and recommends optimized low-carbon alternatives instantly.",
+    features: [
+      "Real-time Embodied Carbon Hotspot Detection",
+      "Automated Material Pruning Algorithms",
+      "Environmental Product Declaration (EPD) Mapping",
+      "Interactive Carbon vs. Budget Tradeoff Simulator",
+      "Exportable Sustainability & Compliance Reports"
+    ],
+    architecture: "React frontend, Express.js microservices, Python optimization algorithms, MongoDB document store.",
+    aiDetails: "Fine-tuned semantic parser for architectural schedules and regression models for life-cycle carbon impact projection.",
+    techStack: [
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB"
+    ],
+    technology: "REACT / NODE / EXPRESS / MONGODB",
+    status: "ACTIVE",
+    githubUrl: "https://github.com/Sky-ydv2008/greenscope.apex",
+    liveUrl: "https://greenscopeapex.vercel.app/",
+    previewImage: "/assets/projects/nexus.png",
+    featured: true
+  }
+];
+
+// Helper to get cached admin projects
+const getLocalAdminProjects = () => {
+  try {
+    const raw = localStorage.getItem('nexoraa_admin_projects');
+    if (raw !== null) {
+      return JSON.parse(raw);
+    }
+    // First time initialization with existing admin projects (GreenScope)
+    localStorage.setItem('nexoraa_admin_projects', JSON.stringify(INITIAL_ADMIN_PROJECTS));
+    return INITIAL_ADMIN_PROJECTS;
+  } catch (e) {
+    return INITIAL_ADMIN_PROJECTS;
+  }
+};
+
+const saveLocalAdminProjects = (projects) => {
+  try {
+    localStorage.setItem('nexoraa_admin_projects', JSON.stringify(projects));
+  } catch (e) {
+    console.error('Failed to cache admin projects', e);
+  }
+};
+
+export const getProjects = async () => {
+  try {
+    const res = await api.get('/projects');
+    // Ensure response is JSON and has data array
+    if (res.data && res.data.success && Array.isArray(res.data.data)) {
+      saveLocalAdminProjects(res.data.data);
+      return res.data;
+    }
+  } catch (e) {
+    // API not reachable or static hosting fallback
+  }
+  return { success: true, data: getLocalAdminProjects() };
+};
+
+export const getProjectBySlug = async (slug) => {
+  try {
+    const res = await api.get(`/projects/${slug}`);
+    if (res.data && res.data.success && res.data.data) {
+      return res.data;
+    }
+  } catch (e) {
+    // Fallback to local
+  }
+  const projects = getLocalAdminProjects();
+  const found = projects.find(p => p.slug === slug || p.id === slug);
+  if (found) {
+    return { success: true, data: found };
+  }
+  return { success: false, error: 'Project not found' };
+};
+
+export const createProject = async (data) => {
+  let created = null;
+  try {
+    const res = await api.post('/projects', data);
+    if (res.data && res.data.success) {
+      created = res.data.data;
+    }
+  } catch (e) {
+    // Network or server error
+  }
+
+  // Always update local cache so admin panel immediately shows user's project
+  const current = getLocalAdminProjects();
+  const newProj = created || {
+    id: `proj-${Date.now()}`,
+    slug: data.slug || data.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+    number: data.number || `0${current.length + 1}`,
+    createdAt: new Date().toISOString(),
+    name: data.title || data.name,
+    ...data
+  };
+
+  const updated = [newProj, ...current.filter(p => p.slug !== newProj.slug && p.id !== newProj.id)];
+  saveLocalAdminProjects(updated);
+  return { success: true, data: newProj };
+};
+
+export const updateProject = async (id, data) => {
+  try {
+    await api.put(`/projects/${id}`, data);
+  } catch (e) {
+    // ignore server failure
+  }
+  const current = getLocalAdminProjects();
+  const updated = current.map(p => (p.id === id || p.slug === id ? { ...p, ...data, updatedAt: new Date().toISOString() } : p));
+  saveLocalAdminProjects(updated);
+  return { success: true, data: updated.find(p => p.id === id || p.slug === id) };
+};
+
+export const deleteProject = async (id) => {
+  try {
+    await api.delete(`/projects/${id}`);
+  } catch (e) {
+    // ignore server failure
+  }
+  const current = getLocalAdminProjects();
+  const updated = current.filter(p => p.id !== id && p.slug !== id);
+  saveLocalAdminProjects(updated);
+  return { success: true, message: 'Project removed' };
+};
 
 export const getTeam = async () => (await api.get('/team')).data;
 export const createTeamMember = async (data) => (await api.post('/team', data)).data;

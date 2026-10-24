@@ -1,93 +1,115 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Users, Code, Terminal, MessageSquare, Sparkles } from 'lucide-react';
+import { ArrowUpRight, MessageSquare, Terminal, GitPullRequest, Code2, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const communityCategories = [
-  { num: "01", name: "DEVELOPERS", desc: "Full stack, backend distributed systems, and low-level runtime engineers." },
-  { num: "02", name: "AI BUILDERS", desc: "Specialists in LLMs, computer vision, neuro-symbolic reasoning, and RAG pipelines." },
-  { num: "03", name: "DESIGNERS", desc: "Creative technologists, motion designers, and editorial design system creators." },
-  { num: "04", name: "RESEARCHERS", desc: "Academics and hackers pursuing zero-knowledge cryptography and safety." },
-  { num: "05", name: "MAKERS", desc: "Hackathon champions, hardware experimenters, and decentralized tech builders." }
+const collaborationTracks = [
+  {
+    num: "01",
+    name: "Systems & Distributed Runtimes",
+    desc: "Collaborate on low-latency state synchronization, WebSocket communication protocols, and local-first offline architectures.",
+    icon: Code2
+  },
+  {
+    num: "02",
+    name: "AI & Neuro-Symbolic Logic",
+    desc: "Contribute to verifiable deduction graphs, constraint theorem provers, and dynamic RAG document parsing models.",
+    icon: Terminal
+  },
+  {
+    num: "03",
+    name: "Edge Vision & Spatial Analytics",
+    desc: "Work on real-time YOLOv8 density inference, optical flow telemetry, and privacy-preserving camera pipelines.",
+    icon: Users
+  },
+  {
+    num: "04",
+    name: "Open Source Tooling & Automation",
+    desc: "Build developer CLI utilities, automated GitHub PR review systems, and zero-dependency developer tools.",
+    icon: GitPullRequest
+  }
 ];
 
 const CommunitySection = () => {
   return (
-    <section id="community" className="relative py-24 sm:py-32 border-t border-white/10 bg-[#080D1D]">
-      <div className="max-w-[1550px] mx-auto px-5 sm:px-8 md:px-12">
+    <section id="community" className="relative py-24 sm:py-32 bg-[#F5F0E8] text-[#252922] border-t border-[#244638]/12">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-14">
+        
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-12 border-b border-white/10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-[#244638]/12">
           <div>
-            <div className="text-mono text-xs text-nex-cyan tracking-widest mb-3 flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-nex-cyan" />
-              07 / COMMUNITY
+            <div className="flex items-center gap-2 mb-3 text-mono text-xs text-[#A15E40] tracking-widest">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#A15E40]" />
+              05 / LAB FELLOWSHIP
             </div>
-            <h2 className="font-editorial text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-nex-primary leading-none uppercase">
-              BUILD TOGETHER.
+            <h2 className="font-serif text-title text-[#244638] font-normal leading-none tracking-tight">
+              Community &amp; Open Research
             </h2>
           </div>
-          <div className="text-mono text-xs text-nex-muted max-w-sm">
-            "NEXORAA IS NOT ONLY A TEAM. IT IS A GROWING COMMUNITY OF BUILDERS."
+          <div className="text-sm text-[#686B61] max-w-sm leading-relaxed">
+            Nexora functions as both a dedicated engineering lab and an open collaborative ecosystem for disciplined software engineers and researchers.
           </div>
         </div>
 
-        {/* Community Metrics Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 py-12 border-b border-white/10">
-          <div className="space-y-1">
-            <div className="font-editorial text-3xl sm:text-4xl font-bold text-nex-primary">100+</div>
-            <div className="text-mono text-xs text-nex-cyan">COMMUNITY BUILDERS</div>
-          </div>
-          <div className="space-y-1">
-            <div className="font-editorial text-3xl sm:text-4xl font-bold text-nex-primary">10+</div>
-            <div className="text-mono text-nex-cyan">OPEN PROJECTS</div>
-          </div>
-          <div className="space-y-1">
-            <div className="font-editorial text-3xl sm:text-4xl font-bold text-nex-primary">04+</div>
-            <div className="text-mono text-nex-cyan">HACKATHON SPRINTS</div>
-          </div>
-          <div className="space-y-1">
-            <div className="font-editorial text-3xl sm:text-4xl font-bold text-nex-primary">24/7</div>
-            <div className="text-mono text-nex-cyan">DISCORD UPLINK</div>
-          </div>
+        {/* Tracks Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-12">
+          {collaborationTracks.map((track, idx) => {
+            const Icon = track.icon;
+            return (
+              <div
+                key={track.num}
+                className="bg-[#FFFCF7] p-6 sm:p-7 rounded-xl border border-[#244638]/15 shadow-card space-y-4 hover:border-[#244638]/30 transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between text-mono text-xs text-[#A15E40]">
+                    <span>TRACK // {track.num}</span>
+                    <Icon className="w-4 h-4 text-[#244638]" />
+                  </div>
+                  <h3 className="font-serif text-xl sm:text-2xl text-[#244638] font-normal leading-snug">
+                    {track.name}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#686B61] leading-relaxed">
+                    {track.desc}
+                  </p>
+                </div>
+
+                <div className="pt-2 text-mono text-[10px] text-[#A15E40] tracking-wider">
+                  ACTIVE FELLOWSHIP TRACK
+                </div>
+              </div>
+            );
+          })}
         </div>
 
-        {/* Community Categories Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 pt-12">
-          {communityCategories.map((cat, idx) => (
-            <motion.div
-              key={cat.num}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.08 }}
-              className="p-6 rounded-xl border border-white/10 bg-white/[0.02] hover:border-nex-cyan/40 hover:bg-white/[0.04] transition-all space-y-3"
+        {/* Call to Action Bar */}
+        <div className="mt-14 p-8 sm:p-10 rounded-xl bg-[#244638] text-[#F5F0E8] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div className="space-y-1">
+            <h3 className="font-serif text-2xl sm:text-3xl text-[#FFFCF7]">
+              Join the Engineering Collective
+            </h3>
+            <p className="text-xs sm:text-sm text-[#E6DFD3]/80 max-w-md">
+              Submit your engineering portfolio and background. We review applications for collaborative research fellows on a continuous rolling basis.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-3">
+            <Link
+              to="/join"
+              className="px-5 py-2.5 bg-[#FFFCF7] hover:bg-[#F5F0E8] text-[#244638] rounded-md text-xs font-medium tracking-wide uppercase transition-colors"
             >
-              <div className="text-mono text-xs text-nex-cyan font-bold">{cat.num}</div>
-              <h3 className="font-editorial text-xl font-bold text-nex-primary">{cat.name}</h3>
-              <p className="text-xs text-nex-muted leading-relaxed">{cat.desc}</p>
-            </motion.div>
-          ))}
+              Apply for Fellowship
+            </Link>
+            <a
+              href="https://github.com/shiivuuu/Nexoraa"
+              target="_blank"
+              rel="noreferrer"
+              className="px-4 py-2.5 border border-white/20 hover:border-white text-[#F5F0E8] rounded-md text-xs font-medium transition-colors"
+            >
+              View GitHub
+            </a>
+          </div>
         </div>
 
-        {/* Action Link */}
-        <div className="pt-12 flex flex-col sm:flex-row items-center gap-6">
-          <Link
-            to="/join"
-            className="px-6 py-3.5 bg-nex-cyan hover:bg-nex-cyan-light text-[#080D1D] font-bold text-mono text-xs rounded-lg transition-all flex items-center gap-2"
-          >
-            <span>APPLY TO JOIN COLLECTIVE</span>
-            <ArrowUpRight className="w-4 h-4" />
-          </Link>
-          <a
-            href="https://discord.gg/nexoraa"
-            target="_blank"
-            rel="noreferrer"
-            className="text-mono text-xs text-nex-secondary hover:text-white transition-colors flex items-center gap-1.5"
-          >
-            <MessageSquare className="w-4 h-4 text-nex-cyan" />
-            <span>JOIN BUILDER DISCORD ↗</span>
-          </a>
-        </div>
       </div>
     </section>
   );

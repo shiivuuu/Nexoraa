@@ -1,84 +1,91 @@
 import React from 'react';
 import CommunitySection from '../sections/CommunitySection';
-import { MessageSquare, Calendar, Trophy, ArrowUpRight } from 'lucide-react';
+import { Calendar, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const events = [
+const sessions = [
   {
-    title: "Nexoraa 48-Hour High Velocity Hackathon Sprint",
-    date: "NOVEMBER 15-17, 2026",
-    type: "HYBRID // BENGALURU & ONLINE",
-    desc: "Open engineering competition focused on autonomous developer agents and edge vision perception models with cash prizes and mentorship."
+    title: "Open Systems & Architecture Technical Discussion",
+    date: "NOVEMBER 2026",
+    type: "TECHNICAL WORKING GROUP",
+    desc: "Open engineering workshop focusing on autonomous developer workflows, local-first database replication, and edge inference pipelines."
   },
   {
-    title: "Decentralized Systems & Local-First Runtimes Tech Talk",
-    date: "OCTOBER 25, 2026",
-    type: "VIRTUAL STREAM",
-    desc: "Deep dive into building sub-100ms retrieval-augmented generation pipelines and local-first CRDT synchronization."
+    title: "Verifiable AI & Neuro-Symbolic Logic Seminar",
+    date: "DECEMBER 2026",
+    type: "RESEARCH WORKING GROUP",
+    desc: "Deep dive into combining formal constraint solvers (Z3) with transformer attention weights for zero-hallucination domain extraction."
   }
 ];
 
 const CommunityPage = () => {
   return (
-    <div className="min-h-screen pt-28 sm:pt-32 pb-24 bg-[#080D1D] text-nex-primary">
-      <div className="max-w-[1550px] mx-auto px-5 sm:px-8 md:px-12">
-        <div className="pb-12 border-b border-white/10 space-y-4">
-          <div className="text-mono text-xs text-nex-cyan tracking-widest flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-nex-cyan" />
-            07 / DEVELOPER COLLECTIVE
+    <div className="min-h-screen pt-32 sm:pt-36 pb-24 bg-[#F5F0E8] text-[#252922]">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-14">
+        
+        {/* Header */}
+        <div className="pb-12 border-b border-[#244638]/12 space-y-4">
+          <div className="flex items-center gap-2 text-mono text-xs text-[#A15E40] tracking-widest">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#A15E40]" />
+            DEVELOPER FELLOWSHIP
           </div>
-          <h1 className="font-editorial text-5xl sm:text-6xl md:text-7xl font-black text-nex-primary uppercase tracking-tight">
-            COMMUNITY OF BUILDERS
+          <h1 className="font-serif text-display text-[#244638] font-normal tracking-tight">
+            Community &amp; Fellowship
           </h1>
-          <p className="text-base sm:text-lg text-nex-secondary/90 max-w-2xl font-normal leading-relaxed">
-            Connecting passionate ethical hackers, AI engineers, and system designers across top universities and open-source networks.
+          <p className="text-base sm:text-lg text-[#686B61] max-w-2xl font-normal leading-relaxed">
+            Collaborating with disciplined software engineers, AI researchers, and systems architects on open-source repositories and verified prototypes.
           </p>
         </div>
 
-        <div className="-mt-8">
+        {/* Section Embed */}
+        <div className="mt-8 rounded-2xl overflow-hidden border border-[#244638]/15 shadow-card">
           <CommunitySection />
         </div>
 
-        {/* Upcoming Community Events */}
-        <div className="pt-16 border-t border-white/10 space-y-8">
-          <div className="flex items-center justify-between text-mono text-xs">
-            <span className="text-nex-cyan tracking-widest">COMMUNITY EVENTS &amp; HACKATHONS</span>
-            <span className="text-nex-muted">CALENDAR // 2026</span>
+        {/* Upcoming Sessions */}
+        <div className="pt-20 space-y-8">
+          <div className="flex items-center justify-between pb-4 border-b border-[#244638]/12">
+            <h2 className="font-serif text-3xl text-[#244638]">
+              Technical Seminars &amp; Working Groups
+            </h2>
+            <span className="text-mono text-xs text-[#686B61]">SCHEDULE</span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {events.map((ev, i) => (
-              <div key={i} className="card-glass p-8 rounded-xl border border-white/10 space-y-4">
-                <div className="flex items-center justify-between text-mono text-xs">
-                  <span className="text-nex-cyan flex items-center gap-1.5">
+            {sessions.map((ev, i) => (
+              <div
+                key={i}
+                className="bg-[#FFFCF7] p-8 rounded-xl border border-[#244638]/15 shadow-card space-y-4"
+              >
+                <div className="flex items-center justify-between text-mono text-xs text-[#686B61]">
+                  <span className="text-[#A15E40] flex items-center gap-1.5 font-semibold">
                     <Calendar className="w-3.5 h-3.5" />
                     {ev.date}
                   </span>
-                  <span className="text-[10px] text-nex-secondary px-2 py-0.5 rounded bg-white/5 border border-white/10">
+                  <span className="text-[10px] px-2 py-0.5 rounded bg-[#F5F0E8] border border-[#244638]/10 text-[#244638]">
                     {ev.type}
                   </span>
                 </div>
-                <h3 className="font-editorial text-2xl font-bold text-nex-primary">
+                <h3 className="font-serif text-2xl text-[#244638]">
                   {ev.title}
                 </h3>
-                <p className="text-sm text-nex-secondary/80 leading-relaxed">
+                <p className="text-sm text-[#686B61] leading-relaxed">
                   {ev.desc}
                 </p>
                 <div className="pt-2">
-                  <a
-                    href="https://discord.gg/nexoraa"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 text-mono text-xs text-nex-cyan hover:underline"
+                  <Link
+                    to="/join"
+                    className="inline-flex items-center gap-1.5 text-xs text-[#244638] font-medium hover:text-[#A15E40] transition-colors"
                   >
-                    <span>REGISTER ON DISCORD UPLINK</span>
+                    <span>Apply for Invitation</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             ))}
           </div>
         </div>
+
       </div>
     </div>
   );

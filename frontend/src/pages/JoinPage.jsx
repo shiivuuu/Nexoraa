@@ -3,24 +3,28 @@ import JoinSection from '../sections/JoinSection';
 
 const JoinPage = () => {
   return (
-    <div className="min-h-screen pt-28 sm:pt-32 pb-24 bg-[#080D1D] text-nex-primary">
-      <div className="max-w-[1550px] mx-auto px-5 sm:px-8 md:px-12">
-        <div className="pb-12 border-b border-white/10 space-y-4">
-          <div className="text-mono text-xs text-nex-cyan tracking-widest flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-nex-cyan" />
-            09 / APPLICATION PORTAL
+    <div className="min-h-screen pt-32 sm:pt-36 pb-24 bg-[#F5F0E8] text-[#252922]">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-14">
+        
+        {/* Header */}
+        <div className="pb-12 border-b border-[#244638]/12 space-y-4">
+          <div className="flex items-center gap-2 text-mono text-xs text-[#A15E40] tracking-widest">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#A15E40]" />
+            FELLOWSHIP RECRUITMENT
           </div>
-          <h1 className="font-editorial text-5xl sm:text-6xl md:text-7xl font-black text-nex-primary uppercase tracking-tight">
-            JOIN NEXORAA
+          <h1 className="font-serif text-display text-[#244638] font-normal tracking-tight">
+            Join the Collective
           </h1>
-          <p className="text-base sm:text-lg text-nex-secondary/90 max-w-2xl font-normal leading-relaxed">
-            Apply to engineer next-generation artificial intelligence, distributed systems, and offensive security tools alongside our core builders.
+          <p className="text-base sm:text-lg text-[#686B61] max-w-2xl font-normal leading-relaxed">
+            Apply to engineer foundational artificial intelligence, distributed systems, and edge vision models alongside our core builders.
           </p>
         </div>
 
-        <div className="-mt-8">
+        {/* Section Embed */}
+        <div className="mt-8 rounded-2xl overflow-hidden border border-[#244638]/15 shadow-card">
           <JoinSection />
         </div>
+
       </div>
     </div>
   );

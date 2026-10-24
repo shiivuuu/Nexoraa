@@ -6,22 +6,33 @@ import ProjectsSection from '../sections/ProjectsSection';
 import AISection from '../sections/AISection';
 import TeamSection from '../sections/TeamSection';
 import CommunitySection from '../sections/CommunitySection';
-import AchievementsSection from '../sections/AchievementsSection';
-import JoinSection from '../sections/JoinSection';
 import ContactSection from '../sections/ContactSection';
 
 const HomePage = () => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-[#F5F0E8] text-[#252922]">
+      {/* 1. Asymmetric Editorial Hero */}
       <Hero />
+
+      {/* 2. Core Architectural Manifesto */}
       <AboutSection />
+
+      {/* 3. Deep Forest Green Feature Section: Research Disciplines */}
       <ResearchSection />
+
+      {/* 4. Selected Work Case Studies: ONLY admin-added projects */}
       <ProjectsSection />
+
+      {/* 5. Sandstone Interactive Systems Assistant */}
       <AISection />
+
+      {/* 6. Founding Leadership */}
       <TeamSection />
+
+      {/* 7. Community & Fellowship */}
       <CommunitySection />
-      <AchievementsSection />
-      <JoinSection />
+
+      {/* 8. Direct Inquiries Transmission */}
       <ContactSection />
     </div>
   );
