@@ -2,11 +2,11 @@
   "admins": [
     {
       "id": "admin-1",
-      "username": "shivam",
-      "email": "admin@nexoraa.tech",
-      "passwordHash": "$2a$10$YAhJYB5DO6Frr3i2vKEmGuNt6RrkBwKxiYMo69hqtG9kZRTTm0skG",
+      "username": "normiee.sky",
+      "email": "normiee.sky@gmail.com",
+      "passwordHash": "$2a$10$cnP2.F7xKt4iuv4egoeLZ.x2KrfWDDF8.NY6HqFdF.c6FWCnpMzAq",
       "role": "SUPER_ADMIN",
-      "createdAt": "2026-10-05T17:46:21.808Z"
+      "createdAt": "2026-10-24T11:44:26.535Z"
     }
   ],
   "projects": [

@@ -77,7 +77,7 @@ const AdminLoginPage = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  placeholder="admin@nexoraa.tech"
+                  placeholder="normiee.sky@gmail.com"
                   className="w-full bg-[#F5F0E8] border border-[#244638]/15 focus:border-[#244638] rounded-md px-3.5 py-2.5 pl-9 text-xs text-[#252922] focus:outline-none"
                 />
                 <Mail className="w-4 h-4 text-[#686B61] absolute left-3 top-3" />

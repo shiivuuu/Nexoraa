@@ -302,7 +302,7 @@ const AdminDashboardPage = () => {
 
           <div className="hidden sm:flex items-center gap-2 text-[#686B61] px-3 py-1.5 rounded bg-[#F5F0E8] border border-[#244638]/10">
             <span className="w-1.5 h-1.5 rounded-full bg-[#244638]" />
-            <span>{admin?.email || 'admin@nexoraa.tech'}</span>
+            <span>{admin?.email || 'normiee.sky@gmail.com'}</span>
           </div>
 
           <button

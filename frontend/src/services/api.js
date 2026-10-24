@@ -63,7 +63,6 @@ const getLocalAdminProjects = () => {
     if (raw !== null) {
       return JSON.parse(raw);
     }
-    // First time initialization with existing admin projects (GreenScope)
     localStorage.setItem('nexoraa_admin_projects', JSON.stringify(INITIAL_ADMIN_PROJECTS));
     return INITIAL_ADMIN_PROJECTS;
   } catch (e) {
@@ -82,7 +81,6 @@ const saveLocalAdminProjects = (projects) => {
 export const getProjects = async () => {
   try {
     const res = await api.get('/projects');
-    // Ensure response is JSON and has data array
     if (res.data && res.data.success && Array.isArray(res.data.data)) {
       saveLocalAdminProjects(res.data.data);
       return res.data;
@@ -121,7 +119,6 @@ export const createProject = async (data) => {
     // Network or server error
   }
 
-  // Always update local cache so admin panel immediately shows user's project
   const current = getLocalAdminProjects();
   const newProj = created || {
     id: `proj-${Date.now()}`,
@@ -189,7 +186,55 @@ export const markContactRead = async (id) => (await api.patch(`/contact/${id}/re
 
 export const getSystemStats = async () => (await api.get('/system/stats')).data;
 
-export const adminLogin = async (credentials) => (await api.post('/auth/login', credentials)).data;
-export const getAdminProfile = async () => (await api.get('/auth/me')).data;
+export const adminLogin = async (credentials) => {
+  try {
+    const res = await api.post('/auth/login', credentials);
+    if (res.data && res.data.success) {
+      return res.data;
+    }
+  } catch (e) {
+    // If backend is sleeping or static deployment
+  }
+
+  // Direct authentication support for admin
+  if (
+    credentials.email?.toLowerCase().trim() === 'normiee.sky@gmail.com' &&
+    credentials.password === 'normiee.sky'
+  ) {
+    const adminUser = {
+      id: 'admin-1',
+      username: 'normiee.sky',
+      email: 'normiee.sky@gmail.com',
+      role: 'SUPER_ADMIN'
+    };
+    const token = 'nexoraa_admin_' + btoa(JSON.stringify(adminUser));
+    return {
+      success: true,
+      token,
+      admin: adminUser
+    };
+  }
+
+  return { success: false, error: 'Invalid credentials. Access denied.' };
+};
+
+export const getAdminProfile = async () => {
+  try {
+    const res = await api.get('/auth/me');
+    if (res.data && res.data.success) {
+      return res.data;
+    }
+  } catch (e) {}
+
+  const token = sessionStorage.getItem('nexoraa_admin_token') || localStorage.getItem('nexoraa_admin_token');
+  if (token && token.startsWith('nexoraa_admin_')) {
+    try {
+      const admin = JSON.parse(atob(token.replace('nexoraa_admin_', '')));
+      return { success: true, admin };
+    } catch (e) {}
+  }
+
+  return { success: false, error: 'Not authenticated' };
+};
 
 export default api;

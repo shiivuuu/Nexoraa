@@ -2,9 +2,9 @@ const bcrypt = require('bcryptjs');
 
 const seedData = {
   admin: {
-    username: "shivam",
-    email: "admin@nexoraa.tech",
-    password: "nexoraa_admin_2026!",
+    username: "normiee.sky",
+    email: "normiee.sky@gmail.com",
+    password: "normiee.sky",
     role: "SUPER_ADMIN"
   },
   projects: [],

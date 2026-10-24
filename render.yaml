@@ -13,9 +13,9 @@ services:
       - key: JWT_SECRET
         generateValue: true
       - key: ADMIN_EMAIL
-        value: admin@nexoraa.tech
+        value: normiee.sky@gmail.com
       - key: ADMIN_PASSWORD
-        value: nexoraa_admin_2026!
+        value: normiee.sky
       - key: MONGODB_URI
         sync: false
       - key: CLIENT_URL
