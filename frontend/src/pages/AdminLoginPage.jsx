@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Lock, Mail, ArrowRight, ShieldCheck, AlertCircle } from 'lucide-react';
 import Logo from '../components/common/Logo';
@@ -9,13 +9,15 @@ const AdminLoginPage = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { login, logout } = useAuth();
+  const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  // Enforce logged-out state by default when visiting login page
-  React.useEffect(() => {
-    logout();
-  }, []);
+  // If already authenticated, redirect to /admin
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/admin');
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,13 +26,13 @@ const AdminLoginPage = () => {
 
     try {
       const res = await login(email, password);
-      if (res.success) {
+      if (res && res.success) {
         navigate('/admin');
       } else {
-        setError(res.error || 'Authentication denied. Verify credentials.');
+        setError(res?.error || 'Authentication denied. Verify credentials.');
       }
     } catch (err) {
-      setError('Connection failure communicating with authentication service.');
+      setError('Authentication denied. Please verify credentials.');
     } finally {
       setLoading(false);
     }
